@@ -5,13 +5,13 @@ yum -y install bind
 ifconfig
 #Editar hosts
 vi /etc/hosts
-  192.168.0.100   www.asesonet.com        asesonet
+	192.168.0.100   www.asesonet.com        asesonet
 #Editar network
 vi /etc/sysconfig/network
-  hostname=asesonet.com
+	hostname=asesonet.com
 #Editar resolv.conf
 vi /etc/resolv.conf
-  nameserver 192.168.0.100
+	nameserver 192.168.0.100
 #Cambiar nombre del hostname
 hostnamectl set-hostname asesonet.com
 #Habilitar

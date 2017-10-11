@@ -22,18 +22,18 @@ ufw allow 8080
 #Agregar permisos en users.xml
 vi /opt/tomcat/conf/tomcat-users.xml
 #Agregar
-  <user username="admin" password="admin" roles="manager-gui,admin-gui"/>
+	<user username="admin" password="admin" roles="manager-gui,admin-gui"/>
 #Para usar Manager eliminar lo que esta dentro de context
 vi /opt/tomcat/webapps/manager/META-INF/context.xml
 #Borrar o comentar!
 #
-  <Context antiResourceLocking="false" privileged="true" >
-  <!--
-    <Valve className="org.apache.catalina.valves.RemoteAddrValve"
-           allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
-    <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer$
-  -->
-  </Context>
+	<Context antiResourceLocking="false" privileged="true" >
+	<!--
+	  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+			 allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+	  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer$
+	-->
+	</Context>
 #
 #Ejecutar
 cd /opt/tomcat/bin
