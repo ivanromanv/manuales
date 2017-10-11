@@ -18,40 +18,40 @@ sh uninstall.sh
 #Integrando con Webmin
 Install csf as above
 Install the csf webmin module in:
-  Webmin > Webmin Configuration > Webmin Modules >
-  From local file > /usr/local/csf/csfwebmin.tgz > Install Module
+	Webmin > Webmin Configuration > Webmin Modules >
+	From local file > /usr/local/csf/csfwebmin.tgz > Install Module
 #Configurar por panel
 #ConfigServer Firewall / Firewall Configuration o el archivo /etc/csf/csf.conf
-  TESTING=OFF
-  RESTRICT_SYSLOG = 3
-  SYSLOG_CHECK = 1200
-  DNS recursion restrictions
-  MySQL LOAD DATA
+	TESTING=OFF
+	RESTRICT_SYSLOG = 3
+	SYSLOG_CHECK = 1200
+	DNS recursion restrictions
+	MySQL LOAD DATA
 #agregar en /etc/my.cnf
-  local-infile=0
-  IPV6=ON             #O elimine ip6tables
-  IPV6_ICMP_STRICT=ON	#O elimine ip6tables
-  IPV6_SPI=ON         #O elimine ip6tables
-  dhclient            #Se debe Configurar una IP estatica
-  CloudLinux          #Considerar usar una nube por seguridad
-  PORTS_sshd          #Cambiar puerto del 22 a 25267
+	local-infile=0
+	IPV6=ON             #O elimine ip6tables
+	IPV6_ICMP_STRICT=ON	#O elimine ip6tables
+	IPV6_SPI=ON         #O elimine ip6tables
+	dhclient            #Se debe Configurar una IP estatica
+	CloudLinux          #Considerar usar una nube por seguridad
+	PORTS_sshd          #Cambiar puerto del 22 a 25267
 vi /etc/csf/csf.conf
-  PORTS_sshd="25267"
+	PORTS_sshd="25267"
 vi /etc/ssh/sshd_config
-  Port 25267
-  UseDNS              #Cambiar a NO
+	Port 25267
+	UseDNS              #Cambiar a NO
 vi /etc/ssh/sshd_config
-  UseDNS no
+	UseDNS no
 SSH PasswordAuthentication	#Cambiar a No
 vi /etc/ssh/sshd_config
-  PasswordAuthentication no
+	PasswordAuthentication no
 #Activar y reiniciar servicios
 systemctl enable sshd
 systemctl restart sshd
 
 #Configurar los archivos
 #/etc/csf
-  /etc/csf/csf.allow
-  /etc/csf/csf.deny
-  /etc/csf/csf.redirect
-  /etc/csf/csf.blocklists
+	/etc/csf/csf.allow
+	/etc/csf/csf.deny
+	/etc/csf/csf.redirect
+	/etc/csf/csf.blocklists
