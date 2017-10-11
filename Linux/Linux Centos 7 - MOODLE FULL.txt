@@ -34,14 +34,14 @@ yum -y install bind
 ifconfig
 #Editar hosts
 vi /etc/hosts
-192.168.0.100   www.asesonet.com        asesonet
+    192.168.0.100   www.asesonet.com        asesonet
 #Editar network
 vi /etc/sysconfig/network
-hostname=asesonet.com
+    hostname=asesonet.com
 #Editar resolv.conf
 vi /etc/resolv.conf
-nameserver 192.168.0.100
-#Cambiar nombre del hostname
+    nameserver 192.168.0.100
+#Para cambiar nombre del hostname
 hostnamectl set-hostname asesonet.com
 #Habilitar
 systemctl enable named
@@ -168,12 +168,12 @@ Alias /moodle "/var/www/html/moodle"
 #Crear archivo .htaccess
 cd /datos/moodledata
 vi .htaccess
-order deny,allow
-deny from all
+    order deny,allow
+    deny from all
 #Crontab para moodle
 crontab -e
 #Agregar linea
-*/5 * * * * root /usr/bin/wget -O /dev/null http://localhost/moodle/admin/cron.php
+    */5 * * * * root /usr/bin/wget -O /dev/null http://localhost/moodle/admin/cron.php
 #Reiniciar los servicios
 systemctl restart mysqld
 systemctl restart httpd
@@ -209,35 +209,35 @@ cat /etc/ssl/certs/dhparam.pem | sudo tee -a /etc/ssl/certs/apache-selfsigned.cr
 #Editando SSL
 vi /etc/httpd/conf.d/ssl.conf
 #Descomentar y comentar
-DocumentRoot "/var/www/html"
-ServerName www.asesonet.com:443
-# SSLProtocol all -SSLv2
-# SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5:!SEED:!IDEA
-SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
-SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+    DocumentRoot "/var/www/html"
+    ServerName www.asesonet.com:443
+    # SSLProtocol all -SSLv2
+    # SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5:!SEED:!IDEA
+    SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+    SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
 #Agregar al final del archivo 
 vi /etc/httpd/conf.d/ssl.conf
 ##
-SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
-SSLProtocol All -SSLv2 -SSLv3
-SSLHonorCipherOrder On
-# Disable preloading HSTS for now.  You can use the commented out header line that includes
-# the "preload" directive if you understand the implications.
-#Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
-Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains"
-Header always set X-Frame-Options DENY
-Header always set X-Content-Type-Options nosniff
-# Requires Apache >= 2.4
-SSLCompression off 
-SSLUseStapling on 
-SSLStaplingCache "shmcb:logs/stapling-cache(150000)" 
+    SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
+    SSLProtocol All -SSLv2 -SSLv3
+    SSLHonorCipherOrder On
+    # Disable preloading HSTS for now.  You can use the commented out header line that includes
+    # the "preload" directive if you understand the implications.
+    #Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains"
+    Header always set X-Frame-Options DENY
+    Header always set X-Content-Type-Options nosniff
+    # Requires Apache >= 2.4
+    SSLCompression off 
+    SSLUseStapling on 
+    SSLStaplingCache "shmcb:logs/stapling-cache(150000)" 
 ##
 #Activar el certificado
 apachectl configtest
 #Reiniciar el servicio
 systemctl restart httpd.service
 #editar /etc/hosts
-127.0.0.1	www.asesonet.com	asesonet
+    127.0.0.1	www.asesonet.com	asesonet
 #Cambiar en moodle
 cd /var/www/html/moodle
 vi config.php
@@ -258,8 +258,8 @@ https://letsencrypt.org/
 yum -y install epel-release
 yum -y install python
 #editar y agregar
-vim /etc/httpd/conf/httpd.conf
-Listen 80 443
+vi /etc/httpd/conf/httpd.conf
+    Listen 80 443
 #Crear carpeta letsencrypt
 mkdir /datos
 cd /datos
@@ -282,12 +282,11 @@ firewall-cmd --permanent --add-port=443/tcp
 firewall-cmd --reload
 service httpd restart
 #agregar las lineas o descomentar
-vim /etc/httpd/conf.d/ssl.conf en 
-<VirtualHost *:443>
-SSLCertificateFile    /etc/letsencrypt/live/asesonet.com/cert.pem
-SSLCertificateKeyFile /etc/letsencrypt/live/asesonet.com/privkey.pem
-SSLCertificateChainFile /etc/letsencrypt/live/asesonet.com/chain.pem
-SSLCipherSuite AES256+EECDH:AES256+EDH
-SSLProtocol all -SSLv2 -SSLv3 -TLSv1
+vi /etc/httpd/conf.d/ssl.conf en <VirtualHost *:443>
+    SSLCertificateFile    /etc/letsencrypt/live/asesonet.com/cert.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/asesonet.com/privkey.pem
+    SSLCertificateChainFile /etc/letsencrypt/live/asesonet.com/chain.pem
+    SSLCipherSuite AES256+EECDH:AES256+EDH
+    SSLProtocol all -SSLv2 -SSLv3 -TLSv1
 #Realizar auto renovacion cada tres meses
 ./datos/letsencrypt/letsencrypt-auto renew
