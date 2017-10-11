@@ -21,7 +21,7 @@ Install the csf webmin module in:
   Webmin > Webmin Configuration > Webmin Modules >
   From local file > /usr/local/csf/csfwebmin.tgz > Install Module
 #Configurar por panel
-ConfigServer Firewall / Firewall Configuration o el archivo /etc/csf/csf.conf
+#ConfigServer Firewall / Firewall Configuration o el archivo /etc/csf/csf.conf
   TESTING=OFF
   RESTRICT_SYSLOG = 3
   SYSLOG_CHECK = 1200
@@ -39,7 +39,7 @@ vi /etc/csf/csf.conf
   PORTS_sshd="25267"
 vi /etc/ssh/sshd_config
   Port 25267
-UseDNS                #Cambiar a NO
+  UseDNS              #Cambiar a NO
 vi /etc/ssh/sshd_config
   UseDNS no
 SSH PasswordAuthentication	#Cambiar a No
