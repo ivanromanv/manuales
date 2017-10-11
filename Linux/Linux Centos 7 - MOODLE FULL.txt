@@ -119,7 +119,7 @@ https://download.moodle.org/download.php/moodle/moodle-latest.zip
 php -v
 #Cambiar la permisividad en selinix
 vi /etc/sysconfig/selinux
-SELINUX=permissive
+    SELINUX=permissive
 #Descargar moodle con git
 mkdir /var/www/html/moodle
 cd /var/www/html/moodle
