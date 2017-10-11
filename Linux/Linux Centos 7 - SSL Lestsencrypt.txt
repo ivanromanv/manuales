@@ -5,8 +5,8 @@ https://letsencrypt.org/
 yum -y install epel-release
 yum -y install python
 #editar y agregar
-vim /etc/httpd/conf/httpd.conf
-Listen 80 443
+vi /etc/httpd/conf/httpd.conf
+  Listen 80 443
 #Crear carpeta letsencrypt
 mkdir /datos
 cd /datos
@@ -29,12 +29,11 @@ firewall-cmd --permanent --add-port=443/tcp
 firewall-cmd --reload
 service httpd restart
 #agregar las lineas o descomentar
-vim /etc/httpd/conf.d/ssl.conf en 
-<VirtualHost *:443>
-SSLCertificateFile    /etc/letsencrypt/live/asesonet.com/cert.pem
-SSLCertificateKeyFile /etc/letsencrypt/live/asesonet.com/privkey.pem
-SSLCertificateChainFile /etc/letsencrypt/live/asesonet.com/chain.pem
-SSLCipherSuite AES256+EECDH:AES256+EDH
-SSLProtocol all -SSLv2 -SSLv3 -TLSv1
+vim /etc/httpd/conf.d/ssl.conf en <VirtualHost *:443>
+  SSLCertificateFile    /etc/letsencrypt/live/asesonet.com/cert.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/asesonet.com/privkey.pem
+  SSLCertificateChainFile /etc/letsencrypt/live/asesonet.com/chain.pem
+  SSLCipherSuite AES256+EECDH:AES256+EDH
+  SSLProtocol all -SSLv2 -SSLv3 -TLSv1
 #Realizar auto renovacion cada tres meses
 ./datos/letsencrypt/letsencrypt-auto renew
