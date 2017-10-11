@@ -2,6 +2,7 @@
 #https://configserver.com/cp/csf.html
 #Software
 yum -y install perl-GDGraph
+Yum -y install sshd
 #Descargar 
 cd /usr/src
 rm -fv csf.tgz
@@ -28,18 +29,31 @@ DNS recursion restrictions
 MySQL LOAD DATA
 #agregar en /etc/my.cnf
 local-infile=0
-IPV6=ON				#O elimine ip6tables
-IPV6_ICMP_STRICT=ON	#O elimine ip6tables
-IPV6_SPI=ON			#O elimine ip6tables
-
-dhclient	
-#Se debe Configurar una IP estatica
-CloudLinux
-#Considerar usar una nube donde las restricciones son las fuertes
-
-
-
-
+IPV6=ON						#O elimine ip6tables
+IPV6_ICMP_STRICT=ON			#O elimine ip6tables
+IPV6_SPI=ON					#O elimine ip6tables
+dhclient					#Se debe Configurar una IP estatica
+CloudLinux					#Considerar usar una nube por seguridad
+PORTS_sshd					#Cambiar puerto del 22 a 25267
+vi /etc/csf/csf.conf
+PORTS_sshd="25267"
+vi /etc/ssh/sshd_config
+Port 25267
+UseDNS						#Cambiar a NO
+vi /etc/ssh/sshd_config
+UseDNS no
+SSH PasswordAuthentication	#Cambiar a No
+vi /etc/ssh/sshd_config
+PasswordAuthentication no
+#Activar y reiniciar servicios
+systemctl enable sshd
+systemctl restart sshd
 
 #Configurar los archivos
 #/etc/csf
+/etc/csf/csf.allow
+/etc/csf/csf.deny
+/etc/csf/csf.redirect
+/etc/csf/csf.blocklists
+
+
