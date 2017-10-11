@@ -1,0 +1,21 @@
+#CFS FIREWALL
+#https://configserver.com/cp/csf.html
+#Software
+yum -y install perl-GDGraph
+#Descargar 
+cd /usr/src
+rm -fv csf.tgz
+wget https://download.configserver.com/csf.tgz
+tar -xzf csf.tgz
+cd csf
+sh install.sh
+#para comprobar realice test
+perl /usr/local/csf/bin/csftest.pl
+#Para desinstalar
+cd /etc/csf
+sh uninstall.sh
+#Integrando con Webmin
+Install csf as above
+Install the csf webmin module in:
+  Webmin > Webmin Configuration > Webmin Modules >
+  From local file > /usr/local/csf/csfwebmin.tgz > Install Module
