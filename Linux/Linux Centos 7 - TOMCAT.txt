@@ -35,6 +35,7 @@ vi /opt/tomcat/webapps/manager/META-INF/context.xml
   -->
   </Context>
 #
+#Ejecutar
 cd /opt/tomcat/bin
 ./startup.sh
 ./shutdown.sh
