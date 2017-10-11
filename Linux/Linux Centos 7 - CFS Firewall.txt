@@ -19,6 +19,27 @@ Install csf as above
 Install the csf webmin module in:
   Webmin > Webmin Configuration > Webmin Modules >
   From local file > /usr/local/csf/csfwebmin.tgz > Install Module
+#Configurar por panel
+ConfigServer Firewall / Firewall Configuration
+TESTING=OFF
+RESTRICT_SYSLOG = 3
+SYSLOG_CHECK = 1200
+DNS recursion restrictions
+MySQL LOAD DATA
+#agregar en /etc/my.cnf
+local-infile=0
+IPV6=ON				#O elimine ip6tables
+IPV6_ICMP_STRICT=ON	#O elimine ip6tables
+IPV6_SPI=ON			#O elimine ip6tables
+
+dhclient	
+#Se debe Configurar una IP estatica
+CloudLinux
+#Considerar usar una nube donde las restricciones son las fuertes
+
+
+
+
 
 #Configurar los archivos
 #/etc/csf
