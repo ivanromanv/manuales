@@ -19,3 +19,6 @@ Install csf as above
 Install the csf webmin module in:
   Webmin > Webmin Configuration > Webmin Modules >
   From local file > /usr/local/csf/csfwebmin.tgz > Install Module
+
+#Configurar los archivos
+#/etc/csf
