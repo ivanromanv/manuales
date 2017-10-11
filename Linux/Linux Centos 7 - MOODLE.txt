@@ -6,7 +6,7 @@ https://download.moodle.org/download.php/moodle/moodle-latest.zip
 php -v
 #Cambiar la permisividad en selinix
 vi /etc/sysconfig/selinux
-SELINUX=permissive
+    SELINUX=permissive
 #Descargar moodle con git
 mkdir /var/www/html/moodle
 cd /var/www/html/moodle
@@ -54,12 +54,12 @@ Alias /moodle "/var/www/html/moodle"
 #Crear archivo .htaccess en el area de datosmoodle
 cd /datos/moodledata
 vi .htaccess
-order deny,allow
-deny from all
+    order deny,allow
+    deny from all
 #Crontab para moodle
 crontab -e
 #Agregar linea
-*/5 * * * * root /usr/bin/wget -O /dev/null http://localhost/moodle/admin/cron.php
+    */5 * * * * root /usr/bin/wget -O /dev/null http://localhost/moodle/admin/cron.php
 #Reiniciar los servicios
 systemctl restart mysqld
 systemctl restart httpd
