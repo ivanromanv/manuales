@@ -17,77 +17,12 @@ update-alternatives --display javac
 #Comprobacion
 java -version
 
-#APACHE-TOMCAT
-#Grupo
-groupadd tomcat
-#Useradd
-useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
-#Creando tomcat
-mkdir /opt/tomcat
-#Descomprimiendo en carpeta Download
-tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
-#Permisos
-cd /opt/tomcat
-chgrp -R tomcat /opt/tomcat
-chmod -R g+r conf
-chmod g+x conf
-chown -R tomcat webapps/ work/ temp/ logs/
-#instalado java adicional common
-apt install java-common
-#Comprobando instalcion
-update-java-alternatives -l
-#Permisos al firewall
-ufw allow 8080
-#Agregar permisos en users.xml
-vi /opt/tomcat/conf/tomcat-users.xml
-#AGREGAR
-# <user username="admin" password="admin" roles="manager-gui,admin-gui"/>
-#Para usar Manager eliminar lo que esta dentro de context
-vi /opt/tomcat/webapps/manager/META-INF/context.xml
-#Borrar o comentar!
-#
-<Context antiResourceLocking="false" privileged="true" >
-<!--
-  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
-         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
-  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer$
--->
-</Context>
-#
-cd /opt/tomcat/bin
-./startup.sh
-./shutdown.sh
-http://localhost:8086/sample
-*****
-cambiar los puertos en el archivo server.xml
-vi /opt/tomcat/conf/server.xml
-*****
-
-#GLASFISH
-#Instalar pyton
-apt-get install python-software-properties
-#Ubicar
-mkdir /opt/glassfish
-cp /home/ivan/Downloads/glassfish-4.1.2.zip /opt/glassfish
-#Descromprimir .zip 
-unzip glassfish-4.1.2.zip
-rm glassfish-4.1.2.zip
-#Ubicar
-cd /opt/glassfish/glassfish4/glassfish/bin
-#Ejecutar
-./asadmin start-domain
-./asadmin stop-domain
-http://localhost:4848
-*****
-cambiar los puertos en 
-Configuration/server-config/Network Listeners
-*****
-http://localhost:8081/sample
-https://localhost:8182/sample
-
-#Apache2
+#APACHE
+#Instalar
+yum -y install httpd
 #subir el servicio
-service apache2 restart
+systemctl enable httpd
+systemctl start httpd
 cd /var/www/html
 #copiar aqui los fuentes
 http://localhost:8080/sample
@@ -113,20 +48,6 @@ systemctl enable named
 #Crear Zona Master
 asesonet.com
 root@asesonet.com
-
-#WEBMIN
-#http://www.webmin.com/download.html
-#Descargar en carpeta de instaladores
-cd /datos/programas
-wget http://prdownloads.sourceforge.net/webadmin/webmin-1.850-1.noarch.rpm
-yum -y install perl perl-Net-SSLeay openssl perl-IO-Tty perl-Encode-Detect
-#Instalar
-rpm -U webmin-1.850-1.noarch.rpm
-#Accesar 
-https://www.asesonet.com:10000
-#Activar
-chkconfig webmin on
-service webmin start
 
 #MYSQL
 #https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7

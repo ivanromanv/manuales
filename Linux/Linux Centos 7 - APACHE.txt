@@ -1,4 +1,4 @@
-#APACHE-TOMCAT
+#APACHE
 #Instalar
 yum -y install httpd
 #subir el servicio
