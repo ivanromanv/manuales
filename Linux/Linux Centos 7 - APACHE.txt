@@ -7,4 +7,3 @@ systemctl start httpd
 cd /var/www/html
 #copiar aqui los fuentes
 http://localhost:8080/sample
-
