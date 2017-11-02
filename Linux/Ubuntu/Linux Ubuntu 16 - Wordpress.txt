@@ -1,0 +1,42 @@
+#Requerimientos
+#PHP 7 o superior
+#MySQL 5.6
+#El modulo mod_rewrite de Apache
+#HTTPS soport
+#Instalar parches adicionales para Wordpress
+apt-get upgrade
+apt install php-curl php-gd php-mbstring php-mcrypt php-xml php-xmlrpc
+apt-get install apache2 php7.0 libapache2-mod-php7.0 
+#Descargar el paquete en la ruta escogida
+#
+cd /var/www/html
+#
+wget http://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz
+#Acceder de MySQL 
+mysql -u root -p
+##
+mysql> CREATE DATABASE asesonet;
+Query OK, 1 row affected (0,00 sec)
+GRANT ALL PRIVILEGES aseslonet.* TO "root"@"hostname" IDENTIFIED BY "R00t.Master";
+
+SET PASSWORD FOR 'root'@'servidor' = OLD_PASSWORD('R00t.Master');
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'R00t.Master';
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0,07 sec)
+#Configurar archivo de configuracion wp-config.php
+cp wp-config-sample.php wp-config.php
+#Editar y cambiar las lineas
+vi wp-config.php
+##
+	define('DB_NAME', 'asesonet');     +// El nombre de la base de datos
+	define('DB_USER', 'root');     // Tu usuario de MySQL 
+	define('DB_PASSWORD', 'R00t.Master'); // ...tu contraseña
+	define('DB_HOST', 'localhost');    // 99%  de la veces no necesitas cambiar este valor
+
+#Proceda a la instalacion
+http://192.168.100.82/asesonet/wp-admin/install.php
+#Para iniciar
+http://192.168.100.82/asesonet/wp-admin/
+

@@ -1,0 +1,43 @@
+#MYSQL
+#
+#Desintalar MariaDb 
+apt-get remove mariadb mariadb-server
+apt-get purge mariadb-server
+o
+apt-get remove --auto-remove mariadb-server
+apt-get purge --auto-remove mariadb-server
+#e instalar MySql
+cd /programas
+#Instalando
+apt-get install mysql-server
+#Subiendo servicio
+systemctl enable mysql
+systemctl start mysql
+#Instalacion de seguridad
+mysql_secure_installation
+#RESET PASSWORD MYSQL
+1. Stop mysql:
+systemctl stop mysql
+2. Set the mySQL environment option 
+systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
+3. Start mysql usig the options you just set
+systemctl start mysqld
+4. Login as root
+mysql -u root mysql
+5. Update the root user password with these mysql commands
+mysql> update user set authentication_string=password('R00t.Master') where user='root';
+mysql> FLUSH PRIVILEGES;
+mysql> quit
+6. Stop mysql
+systemctl stop mysqld
+7. Unset the mySQL envitroment option so it starts normally next time
+systemctl unset-environment MYSQLD_OPTS
+8. Start mysql normally:
+systemctl start mysql
+Try to login using your new password:
+7. mysql -u root -p
+8. ALTER USER 'root'@'localhost' IDENTIFIED BY 'R00t.Master';
+#Tunning MYSQL
+wget https://raw.githubusercontent.com/major/MySQLTuner-perl/master/mysqltuner.pl
+#Ejecutar	
+perl ./mysqltuner.pl

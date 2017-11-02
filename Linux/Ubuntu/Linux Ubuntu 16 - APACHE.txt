@@ -1,0 +1,8 @@
+#APACHE
+#Instalar
+apt-get install apache2
+#subir el servicio
+service apache2 restart
+cd /var/www/html
+#copiar aqui los fuentes
+http://localhost:8080/sample

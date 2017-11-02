@@ -1,0 +1,10 @@
+#PHP 7 en Ubuntu
+#Buscando php
+rpm -qa | grep php
+#Removiendo
+apt-get remove php-cli mod_php php-common
+#Instalando
+#cargando modulos
+apt-get install php php-gd php-mbstring php-mcrypt php-soap php-mysqlnd php-zip php-xml php-intl php-xmlrpc php-opcache
+#Comprobando
+php -v 
