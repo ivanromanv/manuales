@@ -76,7 +76,7 @@ systemctl start mysqld
 4. Login as root
 mysql -u root mysql
 5. Update the root user password with these mysql commands
-mysql> update user set authentication_string=password('R00t.2017') where user='root';
+mysql> update user set authentication_string=password('R00t.Master') where user='root';
 mysql> FLUSH PRIVILEGES;
 mysql> quit
 6. Stop mysql
@@ -87,7 +87,7 @@ systemctl unset-environment MYSQLD_OPTS
 systemctl start mysqld
 Try to login using your new password:
 7. mysql -u root -p
-8. ALTER USER 'root'@'localhost' IDENTIFIED BY 'R00t.2017';
+8. ALTER USER 'root'@'localhost' IDENTIFIED BY 'R00t.Master';
 #Tunning MYSQL
 wget https://raw.githubusercontent.com/major/MySQLTuner-perl/master/mysqltuner.pl
 #Ejecutar	
@@ -138,7 +138,7 @@ vi config.php
     dbhost = "localhost"
     dbname = "moodle"
     dbuser = "moodleuser"
-    dbpass = "R00t.2017" (<-- better make this something of your own)
+    dbpass = "R00t.Master" (<-- better make this something of your own)
     prefix = ""
     wwwroot = "http://localhost/moodle"
     dirroot = '/var/www/html/moodle'
@@ -146,9 +146,9 @@ vi config.php
 #O tambien manualmente usar el instalador
 
 #Conectar y crear base de datos moodle
-mysql -u root -p (R00t.2017)
+mysql -u root -p (R00t.Master)
 mysql> CREATE DATABASE moodle CHARSET 'utf8mb4'; 
-mysql> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER ON moodle.* TO moodleuser@localhost IDENTIFIED BY 'R00t.2017';
+mysql> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER ON moodle.* TO moodleuser@localhost IDENTIFIED BY 'R00t.Master';
 mysql> flush privileges;
 mysql> exit
 #Configuracion de apache para moodle
@@ -179,6 +179,8 @@ systemctl restart mysqld
 systemctl restart httpd
 #Ejecutar en browser
 http://localhost/moodle/admin
+USER:admin
+PASS:R00t.Master
 
 #HTTPS con APACHE
 #http://proyectosbeta.net/2015/05/instalar-httpd-con-ssl-en-centos-7/

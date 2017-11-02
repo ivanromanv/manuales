@@ -65,3 +65,5 @@ systemctl restart mysqld
 systemctl restart httpd
 #Ejecutar en browser
 http://localhost/moodle/admin
+USER:admin
+PASS:R00t.Master
