@@ -18,7 +18,7 @@ mysql -u root -p
 ##
 mysql> CREATE DATABASE asesonet;
 Query OK, 1 row affected (0,00 sec)
-GRANT ALL PRIVILEGES aseslonet.* TO "root"@"hostname" IDENTIFIED BY "R00t.Master";
+GRANT ALL PRIVILEGES asesonet.* TO "root"@"hostname" IDENTIFIED BY "R00t.Master";
 
 SET PASSWORD FOR 'root'@'servidor' = OLD_PASSWORD('R00t.Master');
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'R00t.Master';

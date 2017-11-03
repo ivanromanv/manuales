@@ -1,0 +1,33 @@
+#FTP Server
+#Instalar el servicio vsftpd
+apt-get install vsftpd
+#Editar el archivo de configuracion
+vi /etc/vsftpd.conf
+#Descomentar, comentar y agregar
+	##Disable anonymous user login.
+	anonymous_enable=NO
+
+	##Uncomment these two lines.
+	ascii_upload_enable=YES
+	ascii_download_enable=YES
+
+	##Uncomment and enter your Welcome message - Not necessary, It's optional.
+	ftpd_banner=Welcome to ASESONET FTP service.
+
+	##Agregar esta linea al final
+	use_localtime=YES
+#habilitar y subir el servicio
+systemctl enable vsftpd
+systemctl restart vsftpd
+#Confirmar si esta activo
+systemctl status vsftpd
+#Actualiar reglas del firewall
+ufw allow ftp
+
+#Es posible acceder 
+ftp://username@FTP-Server-IP-Address
+ftp://ivan@192.168.100.82
+
+#Creacion de usuarios FTP
+#Para este caso instalar la ruta de la pagina web Wordpress de Asesonet
+
