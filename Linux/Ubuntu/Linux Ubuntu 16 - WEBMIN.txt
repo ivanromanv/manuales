@@ -1,0 +1,15 @@
+#WEBMIN
+#Editar el archivo sources.list para agregar al repositorio deb
+nano /etc/apt/sources.list
+##
+	deb http://download.webmin.com/download/repository sarge contrib
+##
+#descargar key
+wget http://www.webmin.com/jcameron-key.asc
+apt-key add jcameron-key.asc
+#Actualizar 
+apt-key add jcameron-key.asc
+#Instalar webmin
+apt-get install webmin 
+#Ajecutar en el browser
+https://your_server_ip:10000
