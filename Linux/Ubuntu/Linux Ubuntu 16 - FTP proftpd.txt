@@ -1,0 +1,59 @@
+#Proftpd
+#Instalar
+apt-get install proftpd
+#Editar el archivo de configuracion
+vi /etc/proftpd/proftpd.conf
+## Descomentar 
+	DefaultRoot
+#Verificar /etc/hosts
+##
+	192.168.100.82	asesonet.com	asesonet
+#Cambiar nombre del servidor
+hostname asesonet.com
+#Activar servicio
+systemctl enable proftpd
+systemctl start proftpd
+
+#ACTUALIZACIONES AUTOMATICAS WORDPRESS
+#Cambiar las rutas de tipos de archivos en APACHE2 
+vi /etc/apache2/envvars
+## Cambiar
+	export APACHE_RUN_USER=www-data
+	export APACHE_RUN_GROUP=www-data
+##	Por el grupo donde esta instalada la carpeta de wordpress
+	export APACHE_RUN_USER=tomcat
+	export APACHE_RUN_GROUP=tomcat
+
+#Para FTPS Agregamos lo siguiente
+#Podemos crear un una autofirma
+mkdir /etc/proftpd/ssl
+chmod 600 /etc/proftpd/ssl/proftpd.*
+cd /etc/proftpd/ssl
+#Creacion
+openssl req -new -x509 -days 365 -nodes -out /etc/proftpd/ssl/proftpd.cert.pem -keyout /etc/proftpd/ssl/proftpd.key.pem
+#Ubicados
+/etc/proftpd/ssl/proftpd.cert.pem
+/etc/proftpd/ssl/proftpd.key.pem
+
+#TAMBIEN podemos reutilizar
+#Usar una existe previamente creada pata otra implementacion
+/etc/ssl/certs/apache-selfsigned.crt
+/etc/ssl/private/apache-selfsigned.key
+
+#Descomentamos en el archivo /etc/proftpd/proftpd.conf
+	Include /etc/proftpd/tls.conf
+#Y configuramos en el archivo /etc/proftpd/tls.conf
+vi /etc/proftpd/tls.conf
+##
+	<IfModule mod_tls.c>
+	TLSEngine                  on
+	TLSLog                     /var/log/proftpd/tls.log
+	TLSProtocol TLSv1.2
+	TLSCipherSuite AES128+EECDH:AES128+EDH
+	TLSOptions                 NoCertRequest AllowClientRenegotiations
+	TLSRSACertificateFile      /etc/ssl/certs/apache-selfsigned.crt
+	TLSRSACertificateKeyFile   /etc/ssl/private/apache-selfsigned.key
+	TLSVerifyClient            off
+	TLSRequired                on
+	RequireValidShell          no
+	</IfModule>
