@@ -20,7 +20,7 @@ vi /etc/apache2/envvars
 ## Cambiar
 	export APACHE_RUN_USER=www-data
 	export APACHE_RUN_GROUP=www-data
-##	Por el grupo donde esta instalada la carpeta de wordpress
+##	Por el grupo donde esta instalada la carpeta de wordpress (tomcat)
 	export APACHE_RUN_USER=tomcat
 	export APACHE_RUN_GROUP=tomcat
 
