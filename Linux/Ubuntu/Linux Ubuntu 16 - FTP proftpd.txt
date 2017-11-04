@@ -14,7 +14,7 @@ hostname asesonet.com
 systemctl enable proftpd
 systemctl start proftpd
 
-#ACTUALIZACIONES AUTOMATICAS WORDPRESS
+#ACTUALIZACIONES AUTOMATICAS WORDPRESS FTP
 #Cambiar las rutas de tipos de archivos en APACHE2 
 vi /etc/apache2/envvars
 ## Cambiar
@@ -37,6 +37,7 @@ openssl req -new -x509 -days 365 -nodes -out /etc/proftpd/ssl/proftpd.cert.pem -
 
 #TAMBIEN podemos reutilizar
 #Usar una existe previamente creada pata otra implementacion
+#Ubicados
 /etc/ssl/certs/apache-selfsigned.crt
 /etc/ssl/private/apache-selfsigned.key
 
@@ -48,7 +49,7 @@ vi /etc/proftpd/tls.conf
 	<IfModule mod_tls.c>
 	TLSEngine                  on
 	TLSLog                     /var/log/proftpd/tls.log
-	TLSProtocol TLSv1.2
+	TLSProtocol 				SSLv23
 	TLSCipherSuite AES128+EECDH:AES128+EDH
 	TLSOptions                 NoCertRequest AllowClientRenegotiations
 	TLSRSACertificateFile      /etc/ssl/certs/apache-selfsigned.crt
@@ -57,3 +58,6 @@ vi /etc/proftpd/tls.conf
 	TLSRequired                on
 	RequireValidShell          no
 	</IfModule>
+#Activar servicio
+systemctl enable proftpd
+systemctl start proftpd
