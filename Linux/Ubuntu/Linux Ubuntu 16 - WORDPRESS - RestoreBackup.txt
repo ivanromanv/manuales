@@ -14,3 +14,6 @@ unzip database-IP-paginaweb-horafecha.zip
 mysql -u root -p asesonet < database-IP-paginaweb-horafecha.sql
 #Recargar los servicios de apache2
 #service apache2 restart
+#dar permisos
+chown -R tomcat:tomcat asesonet/
+chmod -R 755 asesonet/
