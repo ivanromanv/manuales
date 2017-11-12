@@ -13,6 +13,8 @@ cd /var/www/html
 #
 wget http://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
+#renombrar latest
+mv wordpress asesonet
 #dar permisos
 chown -R tomcat:tomcat asesonet/
 chmod -R 755 asesonet/
