@@ -1,0 +1,16 @@
+#Respaldos wordpress
+#Con la herramienta backup realizar los respaldos manuales
+#Para recuperar moverse a la carpeta de instalacion de la pagina web
+cd /var/www/html/asesonet/wp-content/backupwordpress-XXX
+#mover archivo
+mv database-IP-paginaweb-horafecha.zip  /var/www/html/asesonet
+cd /var/www/html/asesonet
+#Descomprimir
+unzip database-IP-paginaweb-horafecha.zip
+[A]ll para todo
+#ahora proceda a buscar en la carpeta descomprimida el archivo .sql
+#Este contiene la base de datos 
+#Mysql
+mysql -u root -p asesonet < database-IP-paginaweb-horafecha.sql
+#Recargar los servicios de apache2
+#service apache2 restart

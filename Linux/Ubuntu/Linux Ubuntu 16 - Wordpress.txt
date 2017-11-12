@@ -13,6 +13,9 @@ cd /var/www/html
 #
 wget http://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
+#dar permisos
+chown -R tomcat:tomcat asesonet/
+chmod -R 755 asesonet/
 #Acceder de MySQL 
 mysql -u root -p
 ##
