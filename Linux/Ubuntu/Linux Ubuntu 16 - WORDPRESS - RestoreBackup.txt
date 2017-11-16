@@ -17,3 +17,4 @@ mysql -u root -p asesonet < database-IP-paginaweb-horafecha.sql
 #dar permisos
 chown -R tomcat:tomcat asesonet/
 chmod -R 755 asesonet/
+cambio nuevo completo
