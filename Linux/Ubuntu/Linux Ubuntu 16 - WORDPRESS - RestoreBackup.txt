@@ -23,16 +23,14 @@ cd /var/www/html
 mkdir respaldos
 cd respaldos
 mysqldump -u root -pR00t.Master -h localhost asesonet > "asesonet_`date +%Y%m%d_%H%M`".sql
-rm -f "asesonet_`date +%Y%m%d`".zip
-zip -r -f "asesonet_`date +%Y%m%d`".zip /var/www/html/asesonet
+#rm -f "asesonet_`date +%Y%m%d`".zip
+zip -r "asesonet_`date +%Y%m%d`".zip /var/www/html/asesonet
 
 #Script restauracion
 cd /var/www/html
 cd respaldos
-mysql -u root -p R00t.Master asesonet < asesonet.sql
+mysql -u root -pR00t.Master asesonet < asesonet.sql
 unzip -d asesonet.zip /var/www/html/respaldos/asesonet
 cd ..
 chown -R tomcat:tomcat asesonet/
 chmod -R 755 asesonet/
-
-
