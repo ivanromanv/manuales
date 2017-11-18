@@ -1,0 +1,17 @@
+#NTP Server
+#Instalacion
+apt-get install ntp
+#Editar el archivo /etc/ntp.conf
+vi /etc/ntp.conf
+#Agregar los servidores para Ecuador
+	server 0.south-america.pool.ntp.org
+	server 1.south-america.pool.ntp.org
+	server 2.south-america.pool.ntp.org
+	server 3.south-america.pool.ntp.org
+#Ejecutar
+timedatectl set-timezone America/Guayaquil
+timedatectl set-ntp on
+#Activar servicio
+systemctl enable ntp
+systemctl restart ntp
+
