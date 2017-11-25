@@ -1,0 +1,12 @@
+#POSTFIX en Ubuntu. servidor de correo electronico
+#SOLO ENVIO SMTP
+#Instalando postfix
+apt-get install mailutils
+apt-get install postfix
+apt-get install dovecot-core
+#editar archivo /etc/postfix/main.cf
+vi /etc/postfix/main.cf
+#Cambiar 
+	inet_interfaces = all
+#Por
+	inet_interfaces = all

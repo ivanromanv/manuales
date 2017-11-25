@@ -10,6 +10,7 @@ vi /etc/proftpd/proftpd.conf
 	192.168.100.82	asesonet.com	asesonet
 #Cambiar nombre del servidor
 hostname asesonet.com
+hostnamectl set-hostname asesonet
 #Activar servicio
 systemctl enable proftpd
 systemctl start proftpd
