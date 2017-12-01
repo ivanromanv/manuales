@@ -1,0 +1,89 @@
+#Requerimientos para relay servidor
+https://www.ochobitshacenunbyte.com/2012/07/10/como-configurar-un-relay-de-correo-para-nuestra-empresa-con-postfix/
+#Cambiar
+#/etc/php/7.0/apache2/php.ini
+vi php.ini
+	;sendmail_path = /usr/sbin/ssmtp -t
+	sendmail_path = /usr/sbin/sendmail -t -i
+#Agregar las lineas
+#/etc/postfix/main.cf
+	mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 192.168.100.0/24
+	#Correo enviados por gmail
+	relayhost = [smtp.gmail.com]:587
+	smtp_use_tls = yes
+	smtp_tls_CAfile = /etc/postfix/cacert.pem
+	smtp_sasl_auth_enable = yes
+	smtp_sasl_password_maps = hash:/etc/postfix/sasl/sasl_passwd
+	smtp_sasl_security_options = noanonymous
+	smtp_sasl_mechanism_filter = plain
+	smtp_use_tls = yes
+#Crear el archivo /etc/postfix/sasl/sasl_passwd
+vi 	/etc/postfix/sasl/sasl_passwd
+	[smtp.gmail.com]:587 ivanromanv@gmail.com:IvRoVe.250267
+#Dar permisos
+chmod 600 /etc/postfix/sasl/sasl_passwd
+#creamos base de datos postman
+postmap /etc/postfix/sasl/sasl_passwd
+#Instalamos certificados
+apt-get install ca-certificates
+#Agregamos autoridad certificadora
+cat /etc/ssl/certs/Equifax_Secure_CA.pem >> /etc/postfix/cacert.pem
+#Reiniciamos servicio
+/etc/init.d/postfix restart
+#Test de email
+#sendmail
+echo "Este es el cuerpo del mensaje" | sendmail -t -i "Este es el asunto de prueba" ivanromanv@hotmail.com
+#mail
+echo "Este es el cuerpo del mensaje" | mail -s "Este es el asunto de prueba" ivanromanv@hotmail.com
+
+OPCIONAL --NOOOOOOO
+#Cambiar
+#/etc/ssmtp/ssmtp.conf
+vi /etc/ssmtp/ssmtp.conf
+	root=postmaster
+	mailhub=mail.asesonet.com:25
+	hostname=asesonet
+	AuthUser=ivanromanv@asesonet.com
+	AuthPass=ivrove.250267
+	UseSTARTTLS=YES
+
+	O tambien para gmail
+	
+	root=postmaster
+	mailhub=mail.gmail.com:587
+	hostname=asesonet
+	AuthUser=ivanromanv@asesonet.com
+	AuthPass=IvRoVe.250267
+	UseSTARTTLS=YES
+	FromLineOverride=YES
+
+#/var/www/html/asesonet/wp-includes/functions.php
+#En caso de querer configurar manualmente
+#
+add_action('phpmailer_init','send_smtp_email');
+function send_smtp_email( $phpmailer )
+{
+    // Define que estamos enviando por SMTP
+    $phpmailer->isSMTP();
+ 
+    // La dirección del HOST del servidor de correo SMTP p.e. smtp.midominio.com
+    $phpmailer->Host = "smtp.gmail.com";
+ 
+    // Uso autenticación por SMTP (true|false)
+    $phpmailer->SMTPAuth = true;
+ 
+    // Puerto SMTP - Suele ser el 25, 465 o 587
+    $phpmailer->Port = "587";
+ 
+    // Usuario de la cuenta de correo
+    $phpmailer->Username = "ivanromanv@gmail.com";
+ 
+    // Contraseña para la autenticación SMTP
+    $phpmailer->Password = "IvRoVe.250267";
+ 
+    // El tipo de encriptación que usamos al conectar - ssl (deprecated) o tls
+    $phpmailer->SMTPSecure = "tls";
+ 
+    $phpmailer->From = "ivanromanv@gmail.com";
+    $phpmailer->FromName = "Ivan Roman";
+}

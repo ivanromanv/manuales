@@ -24,7 +24,7 @@ mkdir respaldos
 cd respaldos
 mysqldump -u root -pR00t.Master -h localhost asesonet > "asesonet_`date +%Y%m%d_%H%M`".sql
 #rm -f "asesonet_`date +%Y%m%d`".zip
-zip -r "asesonet_`date +%Y%m%d`".zip /var/www/html/asesonet
+zip -r "asesonet_`date +%Y%m%d_%H%M`".zip /var/www/html/asesonet
 
 #Script restauracion
 cd /var/www/html
