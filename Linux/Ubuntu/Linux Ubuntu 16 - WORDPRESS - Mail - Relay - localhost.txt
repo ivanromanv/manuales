@@ -36,8 +36,7 @@ echo "Este es el cuerpo del mensaje" | sendmail -t -i "Este es el asunto de prue
 #mail
 echo "Este es el cuerpo del mensaje" | mail -s "Este es el asunto de prueba" ivanromanv@hotmail.com
 
-OPCIONAL --NOOOOOOO
-#Cambiar
+#Cambiar para servidor local o servidor gmail
 #/etc/ssmtp/ssmtp.conf
 vi /etc/ssmtp/ssmtp.conf
 	root=postmaster
@@ -57,6 +56,7 @@ vi /etc/ssmtp/ssmtp.conf
 	UseSTARTTLS=YES
 	FromLineOverride=YES
 
+	OPCIONAL --NOOOOOOO
 #/var/www/html/asesonet/wp-includes/functions.php
 #En caso de querer configurar manualmente
 #
