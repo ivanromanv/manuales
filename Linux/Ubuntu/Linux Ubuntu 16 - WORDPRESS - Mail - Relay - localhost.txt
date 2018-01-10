@@ -33,7 +33,7 @@ cat /etc/ssl/certs/Equifax_Secure_CA.pem >> /etc/postfix/cacert.pem
 #Test de email
 #sendmail
 echo "Este es el cuerpo del mensaje" | sendmail -t -i "Este es el asunto de prueba" ivanromanv@hotmail.com
-#mail
+#postfix
 echo "Este es el cuerpo del mensaje" | mail -s "Este es el asunto de prueba" ivanromanv@hotmail.com
 
 #Cambiar para servidor local o servidor gmail
@@ -56,7 +56,7 @@ vi /etc/ssmtp/ssmtp.conf
 	UseSTARTTLS=YES
 	FromLineOverride=YES
 
-	OPCIONAL --NOOOOOOO
+OPCIONAL --NOOOOOOO
 #/var/www/html/asesonet/wp-includes/functions.php
 #En caso de querer configurar manualmente
 #
