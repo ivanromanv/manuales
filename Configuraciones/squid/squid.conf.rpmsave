@@ -1,0 +1,234 @@
+# Recommended minimum configuration:
+#
+
+# Example rule allowing access from your local networks.
+# Adapt to list your (internal) IP networks from where browsing
+# should be allowed
+#acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
+#acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
+#acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
+#acl localnet src fc00::/7       # RFC 4193 local private network range
+#acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines
+
+# Acl agregadas ################################################################
+acl todalared_50  src 192.168.50.0/24
+acl todalared_107 src 192.168.107.0/24
+acl todalared_108 src 192.168.108.0/24
+
+# Acl por ip ###################################################################
+acl ip_asistentes src "/etc/squid/reglas/ip_asistentes"
+acl ip_camaras src "/etc/squid/reglas/ip_camaras"
+acl ip_compras src "/etc/squid/reglas/ip_compras"
+acl ip_consultoria src "/etc/squid/reglas/ip_consultoria"
+acl ip_digitacion src "/etc/squid/reglas/ip_digitacion"
+acl ip_encalada src "/etc/squid/reglas/ip_encalada"
+acl ip_externos src "/etc/squid/reglas/ip_externos"
+acl ip_exportacion src "/etc/squid/reglas/ip_exportacion"
+acl ip_gerencias src "/etc/squid/reglas/ip_gerencias"
+acl ip_haciendas src "/etc/squid/reglas/ip_haciendas"
+acl ip_impresoras src "/etc/squid/reglas/ip_impresoras"
+acl ip_jefaturas src "/etc/squid/reglas/ip_jefaturas"
+acl ip_legal src "/etc/squid/reglas/ip_legal"
+acl ip_recepcion src "/etc/squid/reglas/ip_recepcion"
+acl ip_rrhh src "/etc/squid/reglas/ip_rrhh"
+acl ip_servidores src "/etc/squid/reglas/ip_servidores"
+acl ip_sistemas src "/etc/squid/reglas/ip_sistemas"
+acl ip_telefonos_matriz src "/etc/squid/reglas/ip_telefonos_matriz"
+
+acl ip_telefonos_hcdas src "/etc/squid/reglas/ip_telefonos_hcdas"
+
+# Acl wifi sin restriccion ####################################################
+acl ip_wifi_sr src "/etc/squid/reglas/ip_wifi_sr"
+# Acl wifi con restriccion auto ###############################################
+acl ip_wifi_cr src "/etc/squid/reglas/ip_wifi_cr"
+
+# Acl para dominios ###########################################################
+acl dominios_permitidos dstdomain "/etc/squid/reglas/dominios_permitidos"
+# Acl para expresiones ########################################################
+acl exp_denegadas url_regex "/etc/squid/reglas/exp_denegadas"
+# Acl sitios permitidos #######################################################
+acl permitidos url_regex -i "/etc/squid/reglas/permitidos"
+acl negados dstdomain "/etc/squid/reglas/negados"
+# Acl para extensiones de archivos ############################################
+acl extensiones urlpath_regex -i "/etc/squid/reglas/extensiones"
+# Acl para sitios conocidos ###################################################
+acl gobierno dstdomain "/etc/squid/reglas/gobierno"
+acl bancos dstdomain "/etc/squid/reglas/bancos"
+
+# Acl redes sociales ##########################################################
+acl redes_sociales dstdomain "/etc/squid/reglas/redes_sociales"
+# Acl correo externo ##########################################################
+acl correo_externo dstdomain "/etc/squid/reglas/correo_externo"
+
+acl SSL_ports port 443
+acl Safe_ports port 80		# http
+acl Safe_ports port 89		# http Banco del Pacifico
+acl Safe_ports port 21		# ftp
+acl Safe_ports port 443		# https
+acl Safe_ports port 70		# gopher
+# Puertos agregados #####################
+#acl Safe_ports port 26 	# imap
+#acl Safe_ports port 110 	# imap
+acl Safe_ports port 465 	# pop3
+acl Safe_ports port 995
+#acl Safe_ports port 143
+#acl Safe_ports port 993
+#acl Safe_ports port 587
+#acl Safe_ports port 443
+#########################################
+acl Safe_ports port 210		# wais
+acl Safe_ports port 1025-65535	# unregistered ports
+acl Safe_ports port 280		# http-mgmt
+acl Safe_ports port 488		# gss-http
+acl Safe_ports port 591		# filemaker
+acl Safe_ports port 777		# multiling http
+acl CONNECT method CONNECT
+
+#
+# Recommended minimum Access Permission configuration:
+#
+# Deny requests to certain unsafe ports
+http_access deny !Safe_ports
+
+# Deny CONNECT to other than secure SSL ports
+http_access deny CONNECT !SSL_ports
+
+# Only allow cachemgr access from localhost
+http_access allow localhost manager
+http_access deny manager
+
+# We strongly recommend the following be uncommented to protect innocent
+# web applications running on the proxy server who think the only
+# one who can access services on "localhost" is a local user
+#http_access deny to_localhost
+
+#
+# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
+#
+
+# Example rule allowing access from your local networks.
+# Adapt localnet in the ACL section to list your (internal) IP networks
+# from where browsing should be allowed
+#http_access allow localnet
+http_access allow localhost
+#http_access allow todalared_50
+#http_access allow todalared_107
+
+###################################
+# Reglas para control de usuarios #
+################################### 
+
+http_access allow ip_asistentes !redes_sociales !correo_externo !extensiones !exp_denegadas
+http_access allow ip_asistentes permitidos gobierno bancos 
+
+http_access allow ip_camaras
+
+http_access allow ip_compras !extensiones !exp_denegadas
+
+http_access allow ip_consultoria !redes_sociales !extensiones !exp_denegadas
+
+http_access allow ip_digitacion !redes_sociales !correo_externo !extensiones !exp_denegadas
+http_access allow ip_digitacion permitidos gobierno bancos 
+
+http_access allow ip_encalada
+
+http_access allow ip_externos 
+#!redes_sociales !correo_externo !extensiones !exp_denegadas
+#http_access allow ip_externos permitidos gobierno bancos
+
+http_access allow ip_exportacion !redes_sociales !extensiones !exp_denegadas
+http_access allow ip_exportacion permitidos gobierno bancos 
+
+http_access allow ip_gerencias
+
+http_access allow ip_impresoras
+
+http_access allow ip_jefaturas !redes_sociales !extensiones !exp_denegadas
+#http_access allow ip_jefaturas permitidos gobierno bancos
+
+http_access allow ip_legal !extensiones !exp_denegadas
+
+http_access allow ip_recepcion !redes_sociales !correo_externo !extensiones !exp_denegadas
+http_access allow ip_recepcion permitidos gobierno bancos
+
+http_access allow ip_rrhh !redes_sociales !correo_externo !extensiones !exp_denegadas
+http_access allow ip_rrhh permitidos gobierno bancos
+
+http_access allow ip_servidores
+
+http_access allow ip_sistemas 
+
+http_access allow ip_telefonos_matriz
+
+http_access allow ip_haciendas !redes_sociales !correo_externo !extensiones !exp_denegadas
+http_access allow ip_haciendas permitidos gobierno bancos
+
+#http_access allow todalared_108 !redes_sociales !correo_externo !extensiones !exp_denegadas
+#http_access allow todalared_108 permitidos gobierno bancos
+
+http_access allow ip_telefonos_hcdas
+
+#http_access allow ip_wifi_sr
+http_access allow ip_wifi_cr !redes_sociales !correo_externo !extensiones !exp_denegadas
+http_access allow ip_wifi_cr permitidos gobierno bancos
+
+# And finally deny all other access to this proxy
+http_access deny all
+
+# Squid normally listens to port 3128
+
+# intercept SOLAMENTE CUANDO SEA PROXY TRANSPARENTE
+#
+#http_port 192.168.107.99:3128 intercept accel vhost allow-direct
+#http_port 192.168.107.99:3128 accel vhost allow-direct
+http_port 192.168.50.99:3128 intercept transparent
+http_port 192.168.107.99:3128 transparent
+
+# We recommend you to use at least the following line.
+hierarchy_stoplist cgi-bin ?
+
+# Uncomment and adjust the following to add a disk cache directory.
+#cache_dir ufs /var/spool/squid 300 16 256
+cache_dir aufs /var/spool/squid 2048 16 256
+
+# Leave coredumps in the first cache dir
+coredump_dir /var/spool/squid
+
+#
+# Add any of your own refresh_pattern entries above these.
+refresh_pattern ^ftp:		1440	20%	10080
+refresh_pattern ^gopher:	1440	0%	1440
+refresh_pattern -i (/cgi-bin/|\?) 0	0%	0
+refresh_pattern .		0	20%	4320
+
+# Adicionales
+visible_hostname gesrvlinuxc701
+maximum_object_size 48 MB
+cache_swap_low 90
+cache_swap_high 95
+cache_replacement_policy heap LFUDA
+#cachemgr_passwd root.2014.cp all
+#cache_mgr iroman@carmitaproducts.com.ec
+cache_mem 48 MB
+
+# Clamav antivirus ############################################################
+#icap_enable 			on
+#icap_preview_enable 	on
+#icap_preview_size 		128
+#icap_send_client_ip 	on
+##icap_send_auth_user 	on
+##icap_auth_scheme 		Local://%u
+#icap_service			service_avi_req reqmod_precache 0 icap://localhost:1344/srv_clamav
+#icap_service			service_avi respmod_precache 1 icap://localhost:1344/srv_clamav
+#icap_class				class_antivirus saervice_avi service_avi_req
+#icap_access				class_antivirus allow all
+
+#icap_send_client_username 		on
+##icap_client_username_encode 	off
+#icap_client_username_header 	X-Authenticated-User
+##icap_preview_enable 			on
+##icap_preview_size 			1024
+#icap_service 					service_req reqmod_precache bypass=1 icap://127.0.0.1:1344/squidclamav
+#adaptation_access 				service_req allow all
+#icap_service 					service_resp respmod_precache bypass=1 icap://127.0.0.1:1344/squidclamav
+#adaptation_access 				service_resp allow all

@@ -1,0 +1,212 @@
+# Recommended minimum configuration:
+#
+# Example rule allowing access from your local networks.
+# Adapt to list your (internal) IP networks from where browsing
+# should be allowed
+#acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
+#acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
+#acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
+#acl localnet src fc00::/7       # RFC 4193 local private network range
+#acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines
+
+# Acl agregadas ################################################################
+acl todalared_lan  src 10.10.1.0/24
+acl todalared_wifi src 10.10.2.0/24
+
+# Acl por ip ###################################################################
+acl ip_asistentes src "/etc/squid/reglas/ip_asistentes"
+acl ip_camaras src "/etc/squid/reglas/ip_camaras"
+acl ip_capacitacion src "/etc/squid/reglas/ip_capacitacion"
+acl ip_consultoria src "/etc/squid/reglas/ip_consultoria"
+acl ip_externos src "/etc/squid/reglas/ip_externos"
+acl ip_gerencias src "/etc/squid/reglas/ip_gerencias"
+acl ip_jefaturas src "/etc/squid/reglas/ip_jefaturas"
+acl ip_recepcion src "/etc/squid/reglas/ip_recepcion"
+acl ip_servidores src "/etc/squid/reglas/ip_servidores"
+acl ip_sistemas src "/etc/squid/reglas/ip_sistemas"
+
+# Acl wifi sin restriccion ####################################################
+#acl ip_wifi_sr src "/etc/squid/reglas/ip_wifi_sr"
+# Acl wifi con restriccion auto ###############################################
+#acl ip_wifi_cr src "/etc/squid/reglas/ip_wifi_cr"
+
+# Acl para dominios ###########################################################
+acl dominios_permitidos dstdomain "/etc/squid/reglas/dominios_permitidos"
+# Acl para expresiones ########################################################
+acl exp_denegadas url_regex "/etc/squid/reglas/exp_denegadas"
+# Acl sitios permitidos #######################################################
+acl permitidos url_regex -i "/etc/squid/reglas/permitidos"
+acl negados dstdomain "/etc/squid/reglas/negados"
+# Acl para extensiones de archivos ############################################
+acl extensiones urlpath_regex -i "/etc/squid/reglas/extensiones"
+# Acl para sitios conocidos ###################################################
+acl gobierno dstdomain "/etc/squid/reglas/gobierno"
+acl bancos dstdomain "/etc/squid/reglas/bancos"
+
+# Acl redes sociales ##########################################################
+acl redes_sociales dstdomain "/etc/squid/reglas/redes_sociales"
+# Acl correo externo ##########################################################
+acl correo_externo dstdomain "/etc/squid/reglas/correo_externo"
+
+acl SSL_ports port 443
+acl SSL_ports port 8443		# http UAF
+acl Safe_ports port 80		# http
+acl Safe_ports port 81		# Http Inspectorate del Ecuador
+acl Safe_ports port 85		# Http Clinica Kennedy group
+acl Safe_ports port 89		# http Banco del Pacifico
+acl Safe_ports port 90		# http Hilton Colon
+acl Safe_ports port 21		# ftp
+acl Safe_ports port 443		# https
+acl Safe_ports port 70		# gopher
+# Puertos agregados #####################
+acl Safe_ports port 465 	# pop3
+acl Safe_ports port 995
+acl Safe_ports port 3128
+#########################################
+acl Safe_ports port 210		# wais
+acl Safe_ports port 1025-65535	# unregistered ports
+acl Safe_ports port 280		# http-mgmt
+acl Safe_ports port 488		# gss-http
+acl Safe_ports port 591		# filemaker
+acl Safe_ports port 777		# multiling http
+acl Safe_ports port 10000   # Webmin
+acl CONNECT method CONNECT
+acl purge method PURGE 
+
+#
+# Recommended minimum Access Permission configuration:
+#
+# Deny requests to certain unsafe ports
+http_access deny !Safe_ports
+
+# Deny CONNECT to other than secure SSL ports
+http_access deny CONNECT !SSL_ports
+
+# Only allow cachemgr access from localhost
+http_access allow localhost manager
+http_access deny manager
+
+# Ancho de banda 
+###################################
+#delay_parameters (#) descarga/subida
+###################################
+#delay_parameters 1 512000/1024000
+#delay_parameters 1 256000/512000
+#delay_parameters 1 128000/256000
+#delay_parameters 1 64000/128000
+#delay_parameters 1 32000/64000
+
+delay_pools 3
+
+delay_class 1 1
+delay_class 2 1
+delay_class 3 1
+
+delay_parameters 1 -1/-1 
+delay_parameters 2 131072/262144
+##delay_parameters 2 65536/131072 
+#32768/65536
+delay_parameters 3 65536/131072
+##delay_parameters 3 32768/65536 
+#16386/32768
+
+delay_access 1 allow ip_sistemas
+delay_access 1 allow ip_servidores
+#delay_access 1 deny all
+delay_access 2 allow todalared_lan
+#delay_access 2 deny all
+delay_access 3 allow todalared_wifi
+#delay_access 3 deny all
+
+# We strongly recommend the following be uncommented to protect innocent
+# web applications running on the proxy server who think the only
+# one who can access services on "localhost" is a local user
+#http_access deny to_localhost
+
+#
+# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
+#
+
+# Example rule allowing access from your local networks.
+# Adapt localnet in the ACL section to list your (internal) IP networks
+# from where browsing should be allowed
+#http_access allow localnet
+http_access allow localhost
+
+###################################
+# Reglas para control de usuarios #
+################################### 
+
+http_access allow todalared_lan
+http_access allow todalared_wifi
+
+##http_access allow ip_asistentes !redes_sociales !correo_externo !extensiones !exp_denegadas
+##http_access allow ip_asistentes permitidos gobierno bancos 
+
+##http_access allow ip_capacitacion !redes_sociales !correo_externo !extensiones !exp_denegadas
+##http_access allow ip_capacitacion permitidos gobierno bancos 
+
+##http_access allow ip_camaras
+##http_access allow ip_biometricos
+
+##http_access allow ip_consultoria !extensiones !exp_denegadas
+
+##http_access allow ip_externos !redes_sociales !extensiones !exp_denegadas
+#http_access allow ip_externos permitidos gobierno bancos 
+
+##http_access allow ip_gerencias
+
+##http_access allow ip_impresoras
+
+##http_access allow ip_jefaturas !redes_sociales !extensiones !exp_denegadas
+##http_access allow ip_jefaturas permitidos gobierno bancos
+
+##http_access allow ip_recepcion !redes_sociales !correo_externo !extensiones !exp_denegadas
+##http_access allow ip_recepcion permitidos gobierno bancos
+
+##http_access allow ip_rrhh !redes_sociales !correo_externo !extensiones !exp_denegadas
+##http_access allow ip_rrhh permitidos gobierno bancos
+
+##http_access allow ip_servidores
+
+##http_access allow ip_seguridad !redes_sociales !correo_externo !extensiones !exp_denegadas
+##http_access allow ip_seguridad permitidos gobierno bancos
+
+##http_access allow ip_sistemas 
+
+# And finally deny all other access to this proxy
+http_access deny all
+
+# Squid normally listens to port 3128
+
+# intercept SOLAMENTE CUANDO SEA PROXY TRANSPARENTE
+#
+http_port 10.10.1.1:3128 intercept 
+#http_port 192.168.107.99:3128 
+
+# We recommend you to use at least the following line.
+hierarchy_stoplist cgi-bin ?
+
+# Uncomment and adjust the following to add a disk cache directory.
+#cache_dir ufs /var/spool/squid 300 16 256
+cache_dir aufs /var/spool/squid 2048 16 256
+
+# Leave coredumps in the first cache dir
+coredump_dir /var/spool/squid
+
+#
+# Add any of your own refresh_pattern entries above these.
+refresh_pattern ^ftp:		1440	20%	10080
+refresh_pattern ^gopher:	1440	0%	1440
+refresh_pattern -i (/cgi-bin/|\?) 0	0%	0
+refresh_pattern .		0	20%	4320
+
+# Adicionales
+visible_hostname frw_magrebsa
+maximum_object_size 48 MB
+cache_swap_low 90
+cache_swap_high 95
+cache_replacement_policy heap LFUDA
+#cachemgr_passwd root.2014.cp all
+#cache_mgr iroman@carmitaproducts.com.ec
+cache_mem 48 MB

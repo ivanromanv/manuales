@@ -1,0 +1,76 @@
+###############################################################################
+# Copyright 2006-2016, Way to the Web Limited
+# URL: http://www.configserver.com
+# Email: sales@waytotheweb.com
+###############################################################################
+# The following is a list of port and/or IP address assignments to direct
+# traffic to alternative ports/IP addresses
+#
+# Requirements:
+#   nat tables
+#   ipt_DNAT iptables module
+#   ipt_SNAT iptables module
+#   ipt_REDIRECT iptables module
+#
+# The following are the allowed redirection formats
+#
+# DNAT (redirect from one IP address to a different one):
+# IPx|*|IPy|*|tcp/udp          - To IPx redirects to IPy
+# IPx|portA|IPy|portB|tcp/udp  - To IPx to portA redirects to IPy portB
+#
+# DNAT examples:
+# 192.168.254.62|*|10.0.0.1|*|tcp
+# 192.168.254.62|666|10.0.0.1|25|tcp
+#
+# REDIRECT (redirect from port to a different one):
+# IPx|portA|*|portB|tcp/udp    - To IPx to portA redirects to portB
+# *|portA|*|portB|tcp/udp      - To portA redirects to portB
+#
+# REDIRECT examples:
+# 192.168.254.60|666|*|25|tcp
+# *|666|*|25|tcp
+#
+# See readme.txt for more information
+#
+
+#Todos los puertos del Servidor Exchange
+#181.39.49.250 # Proxy
+#181.39.49.252 # Exchange
+#
+
+186.5.36.227|25|192.168.107.203|25|tcp
+186.5.36.227|25|192.168.107.203|25|udp
+186.5.36.227|465|192.168.107.203|465|tcp
+186.5.36.227|465|192.168.107.203|465|udp
+186.5.36.227|110|192.168.107.203|110|tcp
+186.5.36.227|110|192.168.107.203|110|udp
+186.5.36.227|995|192.168.107.203|995|tcp
+186.5.36.227|995|192.168.107.203|995|udp
+186.5.36.227|143|192.168.107.203|143|tcp
+186.5.36.227|143|192.168.107.203|143|udp
+186.5.36.227|993|192.168.107.203|993|tcp
+186.5.36.227|993|192.168.107.203|993|udp
+186.5.36.227|443|192.168.107.203|443|tcp
+186.5.36.227|443|192.168.107.203|443|udp
+
+#186.5.36.226|139|192.168.107.99|139|tcp
+#186.5.36.226|139|192.168.107.99|139|udp
+#186.5.36.226|445|192.168.107.99|445|tcp
+#186.5.36.226|445|192.168.107.99|445|udp
+
+
+#Comunicación remota servidor GESRVAPP02
+#186.5.36.234|1194|192.168.107.210|1194|tcp
+#186.5.36.234|1194|192.168.107.210|1194|udp
+
+#Acceso a las camaras
+#186.5.36.234|8081|192.168.107.250|8081|tcp
+#186.5.36.234|8081|192.168.107.250|8081|udp
+
+#acceso a MSSQL server
+#186.5.36.234|1433|192.168.107.210|1433|tcp
+#186.5.36.234|1433|192.168.107.210|1433|udp
+
+#Acceso a Mysql GEGQNET01
+#186.5.36.234|3306|192.168.107.130|3306|tcp
+#186.5.36.234|3306|192.168.107.130|3306|udp

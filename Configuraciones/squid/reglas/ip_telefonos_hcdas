@@ -1,0 +1,62 @@
+##############################
+# Telefonos IP
+##############################
+# PE	: 192.168.106.1
+# Mask	: 255.255.255.192
+# PBX 	: 192.168.107.230
+# Rango	: 192.168.106.1 - 192.168.106.62
+# Boadcast 	: 192.168.106.63	
+##############################
+#Garita Balao
+#GARITA BALAO
+192.168.108.91
+#192.168.106.10
+#Hcda Sulagro	
+#HCDA SULAGRO
+192.168.108.90
+#192.168.106.11
+#Bodega Bionatural
+#BODEGA BIONATURAL
+192.168.108.93
+#192.168.106.12
+#Veronica Piloso
+#VERONICA PILOSO
+192.168.108.94
+#192.168.106.13
+#Hcda Agrisacsa	
+#HCDA AGRISACSA
+192.168.108.95
+#192.168.106.14
+#Bodega Surgesa
+#BODEGA SURGESA
+192.168.108.96
+#192.168.106.15
+#Hcda Bionatural
+#HCDA BIONATURAL
+192.168.108.97
+#192.168.106.16
+#Daisy Piloso
+#DAISY PILOSO
+192.168.108.98
+#192.168.106.17
+######################
+#Celia Maria
+##############################
+# PE: 192.168.106.65
+# Mask: 255.255.255.192
+# PBX 	: 192.168.107.230
+# Rango	: 192.168.106.64 - 192.168.106.126
+# Boadcast : 192.168.106.127	
+##############################
+#Lady Ullaguari
+#LADY ULLAGUARI
+#192.168.109.90
+192.168.106.75
+#Ronald Macas
+#RONALD MACAS
+#192.168.109.91
+192.168.106.76
+#Gerencia HCM Hacienda
+#GERENCIA HCM
+#192.168.109.92
+192.168.106.77

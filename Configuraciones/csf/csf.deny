@@ -1,0 +1,24 @@
+###############################################################################
+# Copyright 2006-2016, Way to the Web Limited
+# URL: http://www.configserver.com
+# Email: sales@waytotheweb.com
+###############################################################################
+# The following IP addresses will be blocked in iptables
+# One IP address per line
+# CIDR addressing allowed with a quaded IP (e.g. 192.168.254.0/24)
+# Only list IP addresses, not domain names (they will be ignored)
+#
+# Note: If you add the text "do not delete" to the comments of an entry then
+# DENY_IP_LIMIT will ignore those entries and not remove them
+#
+# Advanced port+ip filtering allowed with the following format
+# tcp/udp|in/out|s/d=port|s/d=ip
+#
+# See readme.txt for more information regarding advanced port filtering
+#
+192.168.122.1 # virbr0
+190.154.158.178 # lfd: (sshd) Failed SSH login from 190.154.158.178 (EC/Ecuador/178.cpe-190-154-158.gye.satnet.net): 5 in the last 3600 secs - Tue Nov 17 19:28:50 2015185.130.5.200 # lfd: (sshd) Failed SSH login from 185.130.5.200 (LT/Lithuania/-): 5 in the last 3600 secs - Sun Jan 24 13:05:51 2016
+185.130.5.200 # lfd: (sshd) Failed SSH login from 185.130.5.200 (LT/Lithuania/-): 5 in the last 3600 secs - Sun Jan 24 13:06:01 2016
+113.195.145.70 # lfd: (sshd) Failed SSH login from 113.195.145.70 (CN/China/70.145.195.113.adsl-pool.jx.chinaunicom.com): 5 in the last 3600 secs - Sun Jan 24 14:48:21 2016
+176.121.5.146 # lfd: (sshd) Failed SSH login from 176.121.5.146 (UA/Ukraine/-): 5 in the last 3600 secs - Sun Jan 24 15:39:45 2016
+59.45.79.36 # lfd: (sshd) Failed SSH login from 59.45.79.36 (CN/China/-): 5 in the last 3600 secs - Sun Jan 24 21:33:41 2016

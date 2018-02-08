@@ -1,0 +1,61 @@
+##############################
+# Telefonos IP
+##############################
+##############################
+# PE: 192.168.106.129
+# Mask: 255.255.255.192
+# PBX 	: 192.168.107.230
+# Rango	: 192.168.106.129 - 192.168.106.190
+# Boadcast : 192.168.106.191
+##############################
+#Patricia Rada Rivas - Recepcion
+#RECEPCION
+192.168.107.80
+#Nathalia Palacios Campoverde
+#NATHALIA PALACIOS
+192.168.107.81
+#Patricia Rada Rivas - Recepcion
+#RECEPCION
+192.168.107.82
+#Jorge Encalada Mora - Presidencia
+#PRESIDENCIA
+192.168.107.83
+#Sala de Sesiones
+#SALA DE SESIONES
+192.168.107.84
+#Alicia Encalada Villacis
+#VICEPRESIDENCIA
+192.168.107.85
+#Alicia Encalada de Norero
+#GERENCIA 1
+192.168.107.86
+#Carlos Encalada Villacis
+#GERENCIA 3
+192.168.107.87
+#Vicente Norero Narder
+#GERENCIA 4
+192.168.107.88
+#Ivan Roman Vera
+#DPTO.SISTEMAS
+192.168.107.89
+#Yannine Jairala
+#COMPRAS
+192.168.107.92
+#LUIS MESIAS
+#Luis Mesias Briones
+192.168.107.93
+#Leccy Castro
+#LECCY CASTRO
+192.168.107.94
+#Fabiola Aguilar Salcedo
+#FABIOLA AGUILAR
+192.168.107.95
+#Dpto. RRHH
+#DPTO. RRHH
+192.168.107.96
+#Tamara Caisa
+#TAMARA CAISA
+192.168.107.97
+#Liliana Chavez
+#LILIANA CHAVEZ
+192.168.107.98

@@ -1,0 +1,96 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 5 (0x5)
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=EC, ST=Guayas, L=Guayaquil, O=CarmitaProducts, OU=Sistemas, CN=gesrvlinuxc715/name=server/emailAddress=iroman@carmitaproducts.com.ec
+        Validity
+            Not Before: Jan 24 19:13:41 2016 GMT
+            Not After : Jan 21 19:13:41 2026 GMT
+        Subject: C=EC, ST=Guayas, L=Guayaquil, O=CarmitaProducts, OU=Sistemas, CN=gcp_usr04/name=server/emailAddress=iroman@carmitaproducts.com.ec
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:d3:99:a9:7e:a7:05:e7:48:8d:f0:a9:1c:de:50:
+                    2b:1b:7d:7a:4e:41:23:a6:d8:f9:b1:ad:9a:b8:df:
+                    12:27:63:e2:7b:e9:7a:4b:bb:b2:06:61:48:6b:0c:
+                    a8:62:07:bf:ca:c7:29:e3:18:ca:b4:b8:94:f5:d8:
+                    93:f7:2a:f3:48:4b:a5:1b:13:c8:2a:2e:d7:3b:5d:
+                    b3:20:b9:78:73:78:8f:fc:67:d2:dc:e7:24:84:61:
+                    f0:e5:48:d4:0c:b2:86:5f:47:ab:28:9c:ff:c0:b4:
+                    eb:4c:7c:c7:0e:fc:43:b2:dc:55:5e:0b:48:d0:21:
+                    09:23:6b:8b:95:21:32:a5:60:72:d6:8e:37:bf:d1:
+                    35:54:e5:28:b4:ce:44:64:4e:7d:0e:78:c4:c7:cf:
+                    d1:d0:57:0d:99:b0:9f:05:38:7e:36:d7:6f:75:f3:
+                    e1:f4:a1:8b:68:ac:e8:78:11:cb:40:3a:c8:3a:b2:
+                    f6:8e:98:f5:51:1c:22:7d:1f:fc:8b:11:11:0a:bb:
+                    28:0b:ea:bb:25:18:ff:f9:ac:52:57:14:ea:ba:5d:
+                    99:df:56:c0:04:3b:fc:22:f8:97:c4:89:28:f9:aa:
+                    0c:af:d4:27:cb:e6:ad:7a:eb:f0:12:2d:f4:e9:1c:
+                    72:cc:06:1c:26:82:96:bf:e3:3d:99:e2:99:02:37:
+                    05:9d
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                Easy-RSA Generated Certificate
+            X509v3 Subject Key Identifier: 
+                11:9F:58:D3:34:99:F5:71:29:2C:01:8C:52:C4:FC:94:D8:E1:84:E4
+            X509v3 Authority Key Identifier: 
+                keyid:D9:C6:74:2A:8D:F6:DB:E5:7D:A3:3F:D1:D1:7D:B5:89:32:96:79:B1
+                DirName:/C=EC/ST=Guayas/L=Guayaquil/O=CarmitaProducts/OU=Sistemas/CN=gesrvlinuxc715/name=server/emailAddress=iroman@carmitaproducts.com.ec
+                serial:ED:78:F2:6C:E3:35:37:BC
+
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication
+            X509v3 Key Usage: 
+                Digital Signature
+    Signature Algorithm: sha256WithRSAEncryption
+         84:24:14:66:a1:5f:f6:76:ff:72:c6:83:06:0c:89:8e:e9:f5:
+         cc:99:25:2a:cc:45:4e:ec:38:4a:e9:a3:25:b6:b3:34:fc:26:
+         b7:fb:ac:31:f5:16:49:0c:08:29:ff:95:bd:e9:26:b9:a3:55:
+         3f:15:ff:5d:b7:4a:80:67:c6:58:65:97:5b:70:2f:b2:d9:99:
+         e9:5f:36:59:da:26:bb:0e:8f:a7:b6:90:62:a4:22:8a:9f:87:
+         b4:f8:7a:ee:93:ae:59:e2:cb:a1:8c:ec:76:c5:53:18:a7:f6:
+         ea:6e:b2:a0:88:ad:b5:3f:63:5c:67:4a:68:82:10:20:f0:d2:
+         c2:ef:4d:20:30:73:59:e2:43:8f:cf:df:36:f4:de:85:15:e0:
+         e7:eb:72:25:c2:fd:5f:e1:42:2c:ca:86:0c:a2:aa:11:e6:14:
+         a8:08:24:f1:11:64:50:1e:1b:2b:bb:12:c2:78:1f:1b:57:0e:
+         e5:57:0e:5d:44:93:8b:10:cf:aa:67:56:56:51:0b:71:97:16:
+         dc:4d:b7:59:b2:6b:f8:63:03:0b:41:07:65:d2:0b:d2:d1:50:
+         f6:c3:33:28:39:49:39:f0:6e:32:80:a5:0b:e8:06:11:dc:0d:
+         b5:3b:81:61:48:d4:f0:a8:d1:1d:38:44:47:c6:ef:ac:01:0f:
+         11:ce:c1:df
+-----BEGIN CERTIFICATE-----
+MIIFVjCCBD6gAwIBAgIBBTANBgkqhkiG9w0BAQsFADCBtzELMAkGA1UEBhMCRUMx
+DzANBgNVBAgTBkd1YXlhczESMBAGA1UEBxMJR3VheWFxdWlsMRgwFgYDVQQKEw9D
+YXJtaXRhUHJvZHVjdHMxETAPBgNVBAsTCFNpc3RlbWFzMRcwFQYDVQQDEw5nZXNy
+dmxpbnV4YzcxNTEPMA0GA1UEKRMGc2VydmVyMSwwKgYJKoZIhvcNAQkBFh1pcm9t
+YW5AY2FybWl0YXByb2R1Y3RzLmNvbS5lYzAeFw0xNjAxMjQxOTEzNDFaFw0yNjAx
+MjExOTEzNDFaMIGyMQswCQYDVQQGEwJFQzEPMA0GA1UECBMGR3VheWFzMRIwEAYD
+VQQHEwlHdWF5YXF1aWwxGDAWBgNVBAoTD0Nhcm1pdGFQcm9kdWN0czERMA8GA1UE
+CxMIU2lzdGVtYXMxEjAQBgNVBAMUCWdjcF91c3IwNDEPMA0GA1UEKRMGc2VydmVy
+MSwwKgYJKoZIhvcNAQkBFh1pcm9tYW5AY2FybWl0YXByb2R1Y3RzLmNvbS5lYzCC
+ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANOZqX6nBedIjfCpHN5QKxt9
+ek5BI6bY+bGtmrjfEidj4nvpeku7sgZhSGsMqGIHv8rHKeMYyrS4lPXYk/cq80hL
+pRsTyCou1ztdsyC5eHN4j/xn0tznJIRh8OVI1Ayyhl9Hqyic/8C060x8xw78Q7Lc
+VV4LSNAhCSNri5UhMqVgctaON7/RNVTlKLTORGROfQ54xMfP0dBXDZmwnwU4fjbX
+b3Xz4fShi2is6HgRy0A6yDqy9o6Y9VEcIn0f/IsREQq7KAvquyUY//msUlcU6rpd
+md9WwAQ7/CL4l8SJKPmqDK/UJ8vmrXrr8BIt9OkccswGHCaClr/jPZnimQI3BZ0C
+AwEAAaOCAW4wggFqMAkGA1UdEwQCMAAwLQYJYIZIAYb4QgENBCAWHkVhc3ktUlNB
+IEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQUEZ9Y0zSZ9XEpLAGMUsT8
+lNjhhOQwgewGA1UdIwSB5DCB4YAU2cZ0Ko322+V9oz/R0X21iTKWebGhgb2kgbow
+gbcxCzAJBgNVBAYTAkVDMQ8wDQYDVQQIEwZHdWF5YXMxEjAQBgNVBAcTCUd1YXlh
+cXVpbDEYMBYGA1UEChMPQ2FybWl0YVByb2R1Y3RzMREwDwYDVQQLEwhTaXN0ZW1h
+czEXMBUGA1UEAxMOZ2VzcnZsaW51eGM3MTUxDzANBgNVBCkTBnNlcnZlcjEsMCoG
+CSqGSIb3DQEJARYdaXJvbWFuQGNhcm1pdGFwcm9kdWN0cy5jb20uZWOCCQDtePJs
+4zU3vDATBgNVHSUEDDAKBggrBgEFBQcDAjALBgNVHQ8EBAMCB4AwDQYJKoZIhvcN
+AQELBQADggEBAIQkFGahX/Z2/3LGgwYMiY7p9cyZJSrMRU7sOErpoyW2szT8Jrf7
+rDH1FkkMCCn/lb3pJrmjVT8V/123SoBnxlhll1twL7LZmelfNlnaJrsOj6e2kGKk
+Ioqfh7T4eu6Trlniy6GM7HbFUxin9upusqCIrbU/Y1xnSmiCECDw0sLvTSAwc1ni
+Q4/P3zb03oUV4OfrciXC/V/hQizKhgyiqhHmFKgIJPERZFAeGyu7EsJ4HxtXDuVX
+Dl1Ek4sQz6pnVlZRC3GXFtxNt1mya/hjAwtBB2XSC9LRUPbDMyg5STnwbjKApQvo
+BhHcDbU7gWFI1PCo0R04REfG76wBDxHOwd8=
+-----END CERTIFICATE-----
