@@ -1,0 +1,76 @@
+https://www.solvetic.com/tutoriales/article/3467-firewall-centos-7-configurar-habilitar-deshabilitar-crear-reglas/
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7
+https://docs.bluehosting.cl/tutoriales/servidores/introduccion-a-firewalld-en-centos.html
+http://www.marcelopedra.com.ar/blog/2009/08/09/tabla-de-puertos-tcp/
+
+#Separacion de areas
+firewall-cmd --zone=external --change-interface=p2p1
+
+#Activacion servicio externos ( Los que son vistos por ip publica y se desea acceder a ellos)
+firewall-cmd --zone=external --add-port=53/tcp --permanent
+firewall-cmd --zone=external --add-port=53/udp --permanent
+firewall-cmd --zone=external --add-port=80/tcp --permanent
+firewall-cmd --zone=external --add-port=443/tcp --permanent
+firewall-cmd --zone=external --add-port=443/udp --permanent
+firewall-cmd --zone=external --add-port=3306/tcp --permanent
+firewall-cmd --zone=external --add-port=10000/tcp --permanent
+firewall-cmd --zone=external --add-port=25267/tcp --permanent
+
+#Agregar puertos
+firewall-cmd --zone=external --add-port=53/tcp
+firewall-cmd --zone=external --add-port=53/udp
+firewall-cmd --zone=external --add-port=80/tcp
+firewall-cmd --zone=external --add-port=443/tcp
+firewall-cmd --zone=external --add-port=443/udp
+firewall-cmd --zone=external --add-port=3306/tcp
+firewall-cmd --zone=external --add-port=10000/tcp
+firewall-cmd --zone=external --add-port=25267/tcp
+#Borrar puertos
+firewall-cmd --zone=external --remove-port=53/tcp
+firewall-cmd --zone=external --remove-port=53/udp
+firewall-cmd --zone=external --remove-port=80/tcp
+firewall-cmd --zone=external --remove-port=443/tcp
+firewall-cmd --zone=external --remove-port=443/udp
+firewall-cmd --zone=external --remove-port=3306/tcp
+firewall-cmd --zone=external --remove-port=10000/tcp
+firewall-cmd --zone=external --remove-port=25267/tcp
+
+#Por servicios
+firewall-cmd --zone=external --add-service=http --permanent
+firewall-cmd --zone=external --add-service=https --permanent
+firewall-cmd --zone=external --add-service=ssh --permanent
+firewall-cmd --zone=external --add-service=mysql --permanent
+firewall-cmd --zone=external --add-service=ntp --permanent
+firewall-cmd --zone=external --add-service=dns --permanent
+#Agregar servicios
+firewall-cmd --zone=external --add-service=http
+firewall-cmd --zone=external --add-service=https
+firewall-cmd --zone=external --add-service=ssh
+firewall-cmd --zone=external --add-service=mysql
+firewall-cmd --zone=external --add-service=ntp
+firewall-cmd --zone=external --add-service=dns
+#Borrar servicios
+firewall-cmd --zone=external --remove-service=http
+firewall-cmd --zone=external --remove-service=https
+firewall-cmd --zone=external --remove-service=ssh
+firewall-cmd --zone=external --remove-service=mysql
+firewall-cmd --zone=external --remove-service=ntp
+firewall-cmd --zone=external --remove-service=dns
+
+#Zona publica vistos por la red interna
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+#Activacion servicio NTP
+firewall-cmd --zone=public --add-port=123/udp --permanent
+firewall-cmd --zone=public --add-port=123/udp --permanent
+#Activacion servicio 
+firewall-cmd --zone=public --add-port=53/tcp --permanent
+firewall-cmd --zone=public --add-port=53/udp --permanent
+firewall-cmd --zone=public --add-port=67/tcp --permanent
+firewall-cmd --zone=public --add-port=67/udp --permanent
+firewall-cmd --zone=public --add-port=443/tcp --permanent
+firewall-cmd --zone=public --add-port=3306/tcp --permanent
+firewall-cmd --zone=public --add-port=10000/tcp --permanent
+firewall-cmd --zone=public --add-port=25267/tcp --permanent
+
+#Grabacion de reglas
+firewall-cmd --reload
