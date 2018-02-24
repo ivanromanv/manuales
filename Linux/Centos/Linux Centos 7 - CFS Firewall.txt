@@ -133,6 +133,9 @@ iptables -t nat -A PREROUTING -i $ETHERNET_LAN -p tcp --dport 80 -j DNAT --to $S
 iptables -t nat -A PREROUTING -i $ETHERNET_INTERNET -p tcp --dport 80 -j REDIRECT --to-port $SQUID_PORT
 
 iptables --t nat -A POSTROUTING --out-interface $ETHERNET_INTERNET -j MASQUERADE
+
+#si esta activado DHCP sobre la LAN, descomentar esta linea, se necesita tcp/udp 
+#iptables -A OUTPUT -p udp -o $ETHERNET_LAN --dport 67 --sport 1024:65535 -j ACCEPT
  
 #Aqui
 ###### IPTABLE Allow rule for tcp based multiple port
