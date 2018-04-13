@@ -72,7 +72,7 @@ cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/de
                 </Directory>
 
                 BrowserMatch "MSIE [2-6]" \
-                               nokeepalive ssl-unclean-shutdown \
+                               nokeepalive ssl-unclean-shutdown 
                                downgrade-1.0 force-response-1.0
 
         </VirtualHost>
