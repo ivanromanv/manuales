@@ -9,7 +9,7 @@ def funcion_lista_divisores_n(number):
    evalua_funcion_lista_divisores = funcion_lista_divisores(number)
    evalua_funcion_lista_divisores_extensa = funcion_lista_divisores_extensa(lista_divisores, number)
    evalua_funcion_lista_divisores_depurada = funcion_lista_divisores_depurada(lista_divisores_extensa, number)
-   return lista_divisores_final
+   return evalua_funcion_lista_divisores_depurada
 
 # Funcion que descompone al numero en mcm(minimo comun multiplo)
 def funcion_lista_divisores(number):
