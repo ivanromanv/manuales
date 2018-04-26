@@ -39,7 +39,7 @@ def spelling_corrector(s1,s2):
             evalua_single_insert_or_delete = single_insert_or_delete(x, y)
 #            print(evalua_single_insert_or_delete,x,y)
             if evalua_single_insert_or_delete==0:
-#                print("es 0",x,y)
+                print("es 0",x,y)
                 correccion.append(y)
                 break
             if evalua_single_insert_or_delete==1:
