@@ -63,7 +63,6 @@ def spelling_corrector(s1,s2):
             evalua_single_insert_or_delete = single_insert_or_delete(s1[x], s2[y])
             evalua_find_mismatch = find_mismatch(s1[x], s2[y])
             print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
-            print(s1,s2)
             if evalua_find_mismatch==0 and evalua_single_insert_or_delete==0:
 #                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
                 correccion.append(s1[x])
@@ -72,28 +71,26 @@ def spelling_corrector(s1,s2):
 # 2 diferentes x caracter, diferente tamaño
 # 3 diferentes total
 
-# 1 eliminar 1 inicio o final
-# 2 insertar 1 inicio o final
-# 3 diferentes total, diferencia mas de 2 caracteres 
+# 1 eliminar 1 caracter inicio o final o en medio
+# 2 insertar 1 caracter inicio o final o en medio
+# 3 diferencia mas de 2 caracteres
+# 4 eliminar 1 caracter inicio o final mismo tamaño 
             if evalua_find_mismatch==1 and evalua_single_insert_or_delete==3:
 #                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"Error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
                 correccion.append(s2[y])
-#                s1.replace((s1[x]),"")
-                continue
+                break
+            if evalua_find_mismatch==1 and evalua_single_insert_or_delete==4:
+#                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"Error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
+                correccion.append(s2[y])
+                break
             if evalua_find_mismatch==2 and evalua_single_insert_or_delete==1:
 #                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"Error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
                 correccion.append(s2[y])
-#                s1.replace((s1[x]),"")
-                continue
+                break
             if evalua_find_mismatch==2 and evalua_single_insert_or_delete==2:
 #                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"Error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
                 correccion.append(s2[y])
-#                s1.replace((s1[x]),"")
-                continue
-#            if evalua_find_mismatch==3 and evalua_single_insert_or_delete==3:
-#                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"Error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
-#                correccion.append(s2[y])
-                continue
+                break
 
 #NO existe s1 en s2
 #            for x in range(len(s1)):
@@ -127,11 +124,12 @@ def find_mismatch (s1,s2):
                 return 3
     return number_of_mismatches
 
-def single_insert_or_delete(s1, s2):
 # 0 igual
-# 1 eliminar 1 inicio o final
-# 2 insertar 1 inicio o final
-# 3 diferentes total, diferencia mas de 2 caracteres    
+# 1 eliminar 1 caracter inicio o final o en medio
+# 2 insertar 1 caracter inicio o final o en medio
+# 3 diferencia mas de 2 caracteres
+# 4 eliminar 1 caracter inicio o final mismo tamaño
+def single_insert_or_delete(s1, s2):
     s1=s1.lower()
     s2=s2.lower()
 
@@ -142,6 +140,16 @@ def single_insert_or_delete(s1, s2):
     if abs(len(s1)-len(s2))!=1:
         return 3
     #Return 1 / 2
+
+    if len(s1)==len(s2):
+        n=0
+        for k in range(len(s2)):
+            if s1[k]!=s2[k]:
+                n=n+1
+        if n>1:
+            return 3
+        return 4
+  
     if len(s1)>len(s2):
         # only deletion is possible
         for k in range(len(s2)):
