@@ -64,43 +64,41 @@ def spelling_corrector(s1,s2):
             evalua_find_mismatch = find_mismatch(s1[x], s2[y])
             print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
             if evalua_find_mismatch==0 and evalua_single_insert_or_delete==0:
-#                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
                 correccion.append(s1[x])
                 break
 # 1 diferente 1 caracter, mismo tamaño
-# 2 diferentes x caracter, diferente tamaño
+# 2 diferente 1 caracter, diferente tamaño
 # 3 diferentes total
 
 # 1 eliminar 1 caracter inicio o final o en medio
 # 2 insertar 1 caracter inicio o final o en medio
 # 3 diferencia mas de 2 caracteres
 # 4 eliminar 1 caracter inicio o final mismo tamaño 
-            if evalua_find_mismatch==1 and evalua_single_insert_or_delete==3:
-#                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"Error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
+            elif evalua_find_mismatch==1 and evalua_single_insert_or_delete==3:
                 correccion.append(s2[y])
                 break
-            if evalua_find_mismatch==1 and evalua_single_insert_or_delete==4:
-#                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"Error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
+            elif evalua_find_mismatch==1 and evalua_single_insert_or_delete==4:
                 correccion.append(s2[y])
                 break
-            if evalua_find_mismatch==2 and evalua_single_insert_or_delete==1:
-#                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"Error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
+            elif evalua_find_mismatch==2 and evalua_single_insert_or_delete==1:
                 correccion.append(s2[y])
                 break
-            if evalua_find_mismatch==2 and evalua_single_insert_or_delete==2:
-#                print("indice",x,"cad_1=", s1[x], "cad_2=",s2[y],"Error",evalua_find_mismatch,"InsDel",evalua_single_insert_or_delete)
+            elif evalua_find_mismatch==2 and evalua_single_insert_or_delete==2:
                 correccion.append(s2[y])
                 break
-
-#NO existe s1 en s2
-#            for x in range(len(s1)):
-#                if s1[x]!=s2[x]:
-#                    print("indice",x,"cad_1=", s1[x], "cad_2=",s2[x])
-#                    correccion.append(s1[x])
-#                    break
-
-#            if len(s1[x])<=2:
+            #Palabras menores a 2 caracteres
+            elif evalua_single_insert_or_delete==3 and len(s1[x])<=2:
+                correccion.append(s1[x])
+                break
+            elif len(s1[x])==len(s2[y])==3 and s1!=s2:
+                correccion.append(s1[x])
+                break
+#### FALTA
+#### thes is the first case
+####        
+#            elif evalua_single_insert_or_delete==3:
 #                correccion.append(s1[x])
+#                break
     espacio=" "
     correccion=espacio.join(correccion)
     print("texto final=>",correccion)
@@ -108,7 +106,7 @@ def spelling_corrector(s1,s2):
 def find_mismatch (s1,s2):
 # 0 igual
 # 1 diferente 1 caracter, mismo tamaño
-# 2 diferente2 x caracter, diferente tamaño    
+# 2 diferente 1 caracter, diferente tamaño
 # 3 diferentes total
     #Return 2
     if len(s1) != len(s2):
@@ -128,7 +126,7 @@ def find_mismatch (s1,s2):
 # 1 eliminar 1 caracter inicio o final o en medio
 # 2 insertar 1 caracter inicio o final o en medio
 # 3 diferencia mas de 2 caracteres
-# 4 eliminar 1 caracter inicio o final mismo tamaño
+# 4 diferencia 1 caracter inicio o final mismo tamaño
 def single_insert_or_delete(s1, s2):
     s1=s1.lower()
     s2=s2.lower()
@@ -137,8 +135,8 @@ def single_insert_or_delete(s1, s2):
     if s1==s2:
         return 0
     #Return 3
-    if abs(len(s1)-len(s2))!=1:
-        return 3
+#    if abs(len(s1)-len(s2))!=1:
+#        return 3
     #Return 1 / 2
 
     if len(s1)==len(s2):
@@ -146,10 +144,11 @@ def single_insert_or_delete(s1, s2):
         for k in range(len(s2)):
             if s1[k]!=s2[k]:
                 n=n+1
-        if n>1:
+        if n>=2:
             return 3
-        return 4
-  
+        else:
+            return 4
+
     if len(s1)>len(s2):
         # only deletion is possible
         for k in range(len(s2)):
@@ -167,10 +166,14 @@ def single_insert_or_delete(s1, s2):
                 else:
                     return 3
         return 2
-        
+
 # OJO SOLO LA FUNCION!!!   
 # Main Program #
-s1 = "programing is fan and eesy"
-s2 = ['programming','this','fun','easy','book']
+#   Thes is the Firs cas	['that','first','case','car']	            thes is the first case
+# * programing is fan and eesy  ['programming','this','fun','easy','book']  programming is fun and easy
+# * Thes is vary essy	        ['this', 'is', 'very', 'very', 'easy']	    this is very easy
+# * Wee lpve Pythen	        ['we', 'Live', 'In', 'Python']	            we live python
+s1 = "Thes is the Firs cas"
+s2 = ['that','first','case','car']
 evalua_spelling_corrector  = spelling_corrector(s1,s2)
 print(evalua_spelling_corrector)

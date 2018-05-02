@@ -8,11 +8,6 @@
 # programing	programming	1 (Inserting a single character)
 
 # RESOLUCION DEL INSTRUCTOR
-# 0 igual
-# 1 eliminar 1 caracter inicio o final o en medio
-# 2 insertar 1 caracter inicio o final o en medio
-# 3 diferencia mas de 2 caracteres
-# 4 eliminar 1 caracter inicio o final mismo tamaño
 def single_insert_or_delete(s1, s2):
     s1=s1.lower()
     s2=s2.lower()
@@ -30,9 +25,9 @@ def single_insert_or_delete(s1, s2):
         for k in range(len(s2)):
             if s1[k]!=s2[k]:
                 n=n+1
-        if n>1:
+        if n>=2:
             return 3
-        return 4
+    return 4
   
     if len(s1)>len(s2):
         # only deletion is possible
@@ -54,8 +49,13 @@ def single_insert_or_delete(s1, s2):
     
 # OJO SOLO LA FUNCION!!!   
 # Main Program #
+# 0 igual
+# 1 eliminar 1 caracter inicio o final o en medio
+# 2 insertar 1 caracter inicio o final o en medio
+# 3 diferencia mas de 2 caracteres
+# 4 diferencia 1 caracter inicio o final mismo tamaño
 
-s1 = "book"
-s2 = "book"
+s1 = "bott"
+s2 = "botx"
 evalua_single_insert_or_delete = single_insert_or_delete(s1,s2)
 print(evalua_single_insert_or_delete)
