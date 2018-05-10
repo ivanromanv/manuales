@@ -13,28 +13,56 @@
 #
 def one_to_2D(some_list, r, c):
     tamano_lista=len(some_list)
-    tamano_matriz=int((r*c)/2)
     matriz=[]
-    
+    inicio_matriz=0
+    fin_matriz=c
+    salto=0
+    insertar_none = (r*c) - tamano_lista
     for names in range(0,len(some_list)):
-        if tamano_matriz>=tamano_lista:
-            return None        
-        matriz.append(some_list[0:tamano_matriz])
-        matriz.append(some_list[tamano_matriz:tamano_matriz*2])
-        break
-    return matriz
+        #llenado de lista r de c
+        #print(names,inicio_matriz,fin_matriz,salto,r,c)
+        #print(some_list[names])
+        if tamano_lista+1>(r*c):
+            matriz.append(some_list[inicio_matriz:fin_matriz])
+            inicio_matriz=fin_matriz
+            fin_matriz=fin_matriz+c
+            #Iteracion
+            salto=salto+1
+            if salto>r-1:
+                return matriz
+        if tamano_lista<(r*c):
+            print(some_list[inicio_matriz:fin_matriz])
+            matriz.append(some_list[inicio_matriz:fin_matriz])
+            inicio_matriz=fin_matriz
+            fin_matriz=fin_matriz+c
+            #Iteracion
+            salto=salto+1
 
+            new_list=some_list[inicio_matriz:fin_matriz]
+            print(insertar_none,len(some_list[inicio_matriz:fin_matriz]),r,c)
+            if len(some_list[inicio_matriz:fin_matriz])==len(some_list[inicio_matriz:fin_matriz]):
+                #print("entro", insertar_none, r, c, r*c)
+                while insertar_none < c-len(some_list[inicio_matriz:fin_matriz]):
+                    new_list.append(None)
+                    insertar_none=insertar_none+1
+                print("entro", insertar_none, r, c, r*c)
+            matriz.append(new_list)
+            print(matriz)
+            
+            #if insertar_none <= (r*c) - tamano_lista:
+                #while insertar_none < 2:
+                #    matriz[names].append(None)
+                #    insertar_none=insertar_none+1
+                #print(insertar_none,r)
+       
+            #if c>r:
+            #    matriz.append([None]*c)
+            #    return matriz
+            return matriz
 # OJO SOLO LA FUNCION!!!   
 # Main Program #
-some_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-r = 4
-c = 4
-##
-#one_to_2D([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 4, 4)
-#Your function returns:
-#[[1, 2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15, 16]]
-#The correct return value is:
-#[[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
-##
+some_list = [1, 2, 3, 4, 5, 6]
+r = 2
+c = 5
 evalua_one_to_2D = one_to_2D(some_list, r, c)
 print(evalua_one_to_2D)
