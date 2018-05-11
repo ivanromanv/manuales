@@ -17,10 +17,9 @@ def one_to_2D(some_list, r, c):
     inicio_matriz=0
     fin_matriz=c
     salto=0
-    insertar_none = (r*c) - tamano_lista
+    insertar_none=0
     for names in range(0,len(some_list)):
         #llenado de lista r de c
-        #print(names,inicio_matriz,fin_matriz,salto,r,c)
         #print(some_list[names])
         if tamano_lista+1>(r*c):
             matriz.append(some_list[inicio_matriz:fin_matriz])
@@ -31,38 +30,27 @@ def one_to_2D(some_list, r, c):
             if salto>r-1:
                 return matriz
         if tamano_lista<(r*c):
-            print(some_list[inicio_matriz:fin_matriz])
             matriz.append(some_list[inicio_matriz:fin_matriz])
             inicio_matriz=fin_matriz
             fin_matriz=fin_matriz+c
             #Iteracion
             salto=salto+1
-
-            new_list=some_list[inicio_matriz:fin_matriz]
-            print(insertar_none,len(some_list[inicio_matriz:fin_matriz]),r,c)
-            if len(some_list[inicio_matriz:fin_matriz])==len(some_list[inicio_matriz:fin_matriz]):
-                #print("entro", insertar_none, r, c, r*c)
+            #Agregar None a addnone para luego sumar a matriz
+            add_none=some_list[inicio_matriz:fin_matriz]
+            if len(some_list[inicio_matriz:fin_matriz])<=c:
                 while insertar_none < c-len(some_list[inicio_matriz:fin_matriz]):
-                    new_list.append(None)
+                    add_none.append(None)
                     insertar_none=insertar_none+1
-                print("entro", insertar_none, r, c, r*c)
-            matriz.append(new_list)
-            print(matriz)
-            
-            #if insertar_none <= (r*c) - tamano_lista:
-                #while insertar_none < 2:
-                #    matriz[names].append(None)
-                #    insertar_none=insertar_none+1
-                #print(insertar_none,r)
-       
-            #if c>r:
-            #    matriz.append([None]*c)
-            #    return matriz
+                matriz.append(add_none)
+                while salto+1 < r:
+                    matriz.append([None]*c)
+                    salto=salto+1
             return matriz
+
 # OJO SOLO LA FUNCION!!!   
 # Main Program #
-some_list = [1, 2, 3, 4, 5, 6]
-r = 2
-c = 5
+some_list = [0, 15, 30, 45, 60, 75, 90, 105]
+r = 3
+c = 6
 evalua_one_to_2D = one_to_2D(some_list, r, c)
 print(evalua_one_to_2D)
