@@ -18,14 +18,15 @@ def construct_dictionary_from_file_CSV(file_name):
     file_pointer = open(file_name, 'r')
     data = file_pointer.readlines()
     for line in data:
-        name, course1, course2, course3, course4 = line.strip().split(',')
-        if float(course1)>70 and float(course3)>70:
-            my_dictionary[name] = [float(course1), float(course2), float(course3), float(course4)]
-        return my_dictionary    
+        if line.count('#',0,-1) ==0:
+            name, course1, course2, course3, course4 = line.strip().split(',')
+            if float(course1)>70 and float(course3)>70:
+                my_dictionary[name] = [float(course1), float(course2), float(course3), float(course4)]
+    return my_dictionary
 
 # OJO SOLO LA FUNCION!!!   
-# archivo.csv
+# El archivo3.csv contiene el formato solicitado
 
-file_name='archivo.csv'
+file_name='archivo3.csv'
 evalua_construct_dictionary_from_file_CSV = construct_dictionary_from_file_CSV(file_name)
 print(evalua_construct_dictionary_from_file_CSV)

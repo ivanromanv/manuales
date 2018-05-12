@@ -31,9 +31,8 @@ def list_from_file(file_name):
     return new_list
 
 # OJO SOLO LA FUNCION!!!   
-# archivo.txt, debe contener
-# ['Lucas,Turing,22\n','#Alan,Williams,27\n','#Layla,Trinh,21\n','#Brayden,Huang,22\n','#Oliver,Greek,20\n']
+# El archivo1.txt contiene el formato solicitado
 
-file_name='archivo.txt'
+file_name='archivo1.txt'
 evalua_list_from_file = list_from_file(file_name)
 print(evalua_list_from_file)

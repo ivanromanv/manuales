@@ -20,11 +20,10 @@ def construct_dictionary_from_file(file_name):
     for line in data:
         name, course1, course2, course3, course4 = line.strip().split(',')
         my_dictionary[name] = [float(course1), float(course2), float(course3), float(course4)]
-        return my_dictionary    
+    return my_dictionary    
 
 # OJO SOLO LA FUNCION!!!   
-# archivo.txt, debe contener
-# ['Mark,90,93,60,90','Abigail,84,50,72,75','Frank,46,83,53,79','Yohaan,47,77,74,96']
+# El archivo2.txt contiene el formato solicitado
 
 file_name='archivo2.txt'
 evalua_construct_dictionary_from_file = construct_dictionary_from_file(file_name)
