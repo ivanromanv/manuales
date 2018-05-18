@@ -1,11 +1,17 @@
-# Example of multidimensional list
-numero_filas=2
-numero_columnas=4
-matriz = []
-for i in range(numero_filas):
-    matriz.append([])
-    for j in range(numero_columnas):
-        matriz[i].append(None)
-print(matriz)
+#Declara variables
+co=0
+desc=0
+tp=0
+#Mensaje + lectura
+co=int(input("Ingrese el total compra: "))
+desc=int(input("Ingrese % de descuento : "))
+#Proceso
+desc=int(co*(desc/100))
+tp=co-desc
+#Presentacion de resultados
+print("  El Subtotal:",co)
+print(" (-)Descuento:",desc)
+print("Total a pagar:",tp)
+#Fin
 
         

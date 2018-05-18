@@ -52,7 +52,7 @@ def print_grades(file_name):
     cabecera = "{0:^11s}|{1:^18s}|{2:^8s}|{3:^8s}|{4:^8s}|{5:^8s}|{6:^8s}|".format("ID","Name","Test_1","Test_2","Test_3","Test_4","Avg.")
     print(cabecera)
     keys = tuple(grades_dict.keys())
-    values = tuple(grades_dict.values())
+    #values = tuple(grades_dict.values())
     for id in sorted(grades_dict.keys()):
         detalle="{0:<11s}| {1:<17s}|{2: >7d} |{3: >7d} |{4: >7d} |{5: >7d} |{6:>7.2f} |".format(id,grades_dict[id][0],grades_dict[id][1],grades_dict[id][2],grades_dict[id][3],grades_dict[id][4],grades_dict[id][5])
         print(detalle)

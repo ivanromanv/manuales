@@ -9,6 +9,7 @@
 def dictionary_to_tuple(input_dictionary):
     keys = tuple(input_dictionary.keys())
     values = tuple(input_dictionary.values())
+    print(keys, values)
     return keys, values    
     
 # OJO SOLO LA FUNCION!!!   
