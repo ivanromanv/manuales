@@ -48,5 +48,3 @@ for x in s1:
 4 cas first
 4 cas case
 4 cas car
-		
-		
