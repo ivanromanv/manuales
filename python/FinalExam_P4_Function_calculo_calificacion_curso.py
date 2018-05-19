@@ -28,30 +28,39 @@
 # insert the code from your function in part 1 here
 def my_final_grade_calculation(filename):
     grade_dict={}
-    tests=['Quiz_1','Quiz_2','Quiz_3','Quiz_4','Quiz_5','Quiz_6','Assing_1','Assing_2','Assing_3','Assing_4','Midterm','Final_Exam']
     fp=open(filename,'r')
     lines=fp.readlines()
     fp.close()
+    average_q=0
+    average_a=0    
     for line in lines:
+        average_quiz=[]
+        average_assign=[]        
         elements=line.strip().split(",")
-        if elements and elements[0]:
-            current_key=elements[0].strip()
-            suma=0
-            #if grade_dict.get(current_key)==None:
-                # Key does not exist. Create it
-                #grade_dict[current_key]=[elements[1].strip(),0,0,0,0,0,0,0,0,0,0,0,0,0]
-            #    grade_dict[current_key]=[0,0,0,0,0,0,0,0,0,0,0,0,0.0]
-            for index in range(2,len(elements),1):
-                current_element=elements[index].strip()
-                if current_element not in tests:
-                    #grade_dict[current_key][int(current_element[-1])]=int(elements[index+1])
-                    rango=sum(elements[1:13])
-                    #suma=(grade_dict[current_element][1:12])/12
-                    #suma=suma+int(current_element)
-            print(rango)
-            print(int(suma/12))
-                    
-            #grade_dict[current_key][13]=sum(grade_dict[current_key][1:13])/12.0
+        current_key=elements[0].strip()
+        average_quiz.append(int(elements[1]))
+        average_quiz.append(int(elements[2]))
+        average_quiz.append(int(elements[3]))
+        average_quiz.append(int(elements[4]))
+        average_quiz.append(int(elements[5]))
+        average_quiz.append(int(elements[6]))
+        average_assign.append(int(elements[7]))
+        average_assign.append(int(elements[8]))
+        average_assign.append(int(elements[9]))
+        average_assign.append(int(elements[10]))            
+        average_quiz.sort()
+        average_assign.sort()
+        average_quiz.pop(0)
+        average_quiz.pop(0)
+        average_assign.pop(0)
+        average_q=(sum(average_quiz))/4
+        average_a=(sum(average_assign))/3
+        totalscore=int(average_q+average_a+int(elements[11])+int(elements[12]))/4
+        if totalscore>=60:
+            mensaje="pass"
+        else:
+            mensaje="fail"
+        grade_dict[current_key]=mensaje
     return grade_dict
 
 # OJO SOLO LA FUNCION!!!   
