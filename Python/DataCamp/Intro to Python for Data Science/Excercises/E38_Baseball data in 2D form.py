@@ -31,7 +31,6 @@ def list_from_file(file_name):
     np_baseball = np.array(data)
     # Print out the shape of np_baseball
     print(np_baseball.shape)
-    
 #########################################################################################
 # OJO SOLO LA FUNCION!!!   
 # El baseball.txt contiene el formato solicitado
